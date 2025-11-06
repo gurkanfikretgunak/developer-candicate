@@ -23,9 +23,11 @@ export default getRequestConfig(async () => {
               return cookieStore.getAll();
             },
             setAll(cookiesToSet) {
-              cookiesToSet.forEach(({ name, value }) =>
-                cookieStore.set(name, value)
-              );
+              // Cookie writes are not allowed in this context during the i18n
+              // request lifecycle. Supabase may attempt to refresh auth cookies
+              // here; ignore the request and let the middleware handle it.
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              cookiesToSet.forEach(() => {});
             },
           },
         }

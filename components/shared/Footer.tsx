@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { appConfig } from '@/config/app';
 
 export function Footer() {
   const t = useTranslations('footer');
@@ -12,7 +13,6 @@ export function Footer() {
           <span className="font-medium">{t('projectName')}</span>
           <span>•</span>
           <span>
-            {t('madeBy')}{' '}
             <a
               href="https://github.com/gurkanfikretgunak"
               target="_blank"
@@ -21,10 +21,14 @@ export function Footer() {
             >
               Gurkan Fikret Gunak
             </a>
+            {' '}{t('madeBy')}
+          </span>
+          <span>•</span>
+          <span className="font-medium text-gray-700">
+            {appConfig.stage.toUpperCase()} · v{appConfig.version}
           </span>
           <span>•</span>
           <span>
-            {t('builtWith')}{' '}
             <a
               href="https://cursor.com"
               target="_blank"

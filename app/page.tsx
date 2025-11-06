@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle2, Globe2, Users, BarChart3, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { Badge } from '@/components/ui/badge';
+import { appConfig } from '@/config/app';
 
 export default function Home() {
   const t = useTranslations('home');
