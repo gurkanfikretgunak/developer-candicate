@@ -11,6 +11,8 @@
 
 This platform revolutionizes your hiring process by providing a **structured 4-step evaluation framework** that measures both technical competencies and behavioral skills. Built with modern web technologies, it ensures consistency, objectivity, and data-driven decision-making across your entire recruitment pipeline.
 
+![Platform Screenshot](docs/images/developer-candicate-001.png)
+
 ### Key Benefits
 
 - **🎯 Standardized Process** - Eliminate bias with structured evaluation criteria
