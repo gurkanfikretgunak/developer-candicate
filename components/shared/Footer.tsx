@@ -12,6 +12,7 @@ export function Footer() {
           <span className="font-medium">{t('projectName')}</span>
           <span>•</span>
           <span>
+            {t('madeBy')}{' '}
             <a
               href="https://github.com/gurkanfikretgunak"
               target="_blank"
@@ -20,10 +21,10 @@ export function Footer() {
             >
               Gurkan Fikret Gunak
             </a>
-            {' '}{t('madeBy')}
           </span>
           <span>•</span>
           <span>
+            {t('builtWith')}{' '}
             <a
               href="https://cursor.com"
               target="_blank"
@@ -32,7 +33,6 @@ export function Footer() {
             >
               Cursor
             </a>
-            {' '}{t('builtWith')}
           </span>
         </div>
       </div>

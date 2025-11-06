@@ -1,5 +1,5 @@
 import departmentsData from './departments.json';
-import type { DepartmentsConfig, Department } from '@/lib/types';
+import type { DepartmentsConfig, Department, Category } from '@/lib/types';
 
 export const departments = (departmentsData as DepartmentsConfig).departments;
 
@@ -15,16 +15,44 @@ export function getDepartmentNames(): { id: string; name?: string; nameKey?: str
   }));
 }
 
+// Get department criteria with organization customization support
+export function getDepartmentCriteria(
+  departmentId: string,
+  orgCustomCategories?: Category[]
+): { name?: string; nameKey?: string; categories: Category[] } | null {
+  const defaultDept = getDepartmentById(departmentId);
+  
+  if (!defaultDept) {
+    return null;
+  }
+
+  // If organization has custom categories, use them
+  if (orgCustomCategories && orgCustomCategories.length > 0) {
+    return {
+      name: defaultDept.name,
+      nameKey: defaultDept.nameKey,
+      categories: orgCustomCategories,
+    };
+  }
+
+  // Otherwise use default
+  return {
+    name: defaultDept.name,
+    nameKey: defaultDept.nameKey,
+    categories: defaultDept.categories,
+  };
+}
+
 export const sectors = [
-  'Teknoloji',
-  'Finans',
-  'E-ticaret',
-  'Sağlık',
-  'Eğitim',
-  'Telekomünikasyon',
-  'Üretim',
-  'Danışmanlık',
-  'Diğer'
+  'technology',
+  'finance',
+  'ecommerce',
+  'healthcare',
+  'education',
+  'telecommunications',
+  'manufacturing',
+  'consulting',
+  'other'
 ];
 
 export const levelOptions = [

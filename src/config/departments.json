@@ -2,10 +2,10 @@
   "departments": [
     {
       "id": "backend-dotnet",
-      "name": "Backend (.NET & Microservice)",
+      "nameKey": "departments.backendDotnet",
       "categories": [
         {
-          "name": "Teknik Yetkinlikler",
+          "nameKey": "categories.technicalSkills",
           "criteria": [
             "DI ve Object Lifecycle",
             "Clean Code / SOLID",
@@ -16,7 +16,7 @@
           ]
         },
         {
-          "name": "Davranışsal Yetkinlikler",
+          "nameKey": "categories.behavioralSkills",
           "criteria": [
             "Takım Uyumu",
             "İletişim Becerileri",
@@ -28,10 +28,10 @@
     },
     {
       "id": "frontend-react",
-      "name": "Frontend (React & Next.js)",
+      "nameKey": "departments.frontendReact",
       "categories": [
         {
-          "name": "Teknik Yetkinlikler",
+          "nameKey": "categories.technicalSkills",
           "criteria": [
             "React Hooks & State Management",
             "TypeScript",
@@ -42,7 +42,7 @@
           ]
         },
         {
-          "name": "Davranışsal Yetkinlikler",
+          "nameKey": "categories.behavioralSkills",
           "criteria": [
             "Takım Uyumu",
             "İletişim Becerileri",
@@ -54,10 +54,10 @@
     },
     {
       "id": "fullstack",
-      "name": "Full Stack Developer",
+      "nameKey": "departments.fullstack",
       "categories": [
         {
-          "name": "Teknik Yetkinlikler - Backend",
+          "nameKey": "categories.technicalSkillsBackend",
           "criteria": [
             "Backend Framework Bilgisi",
             "Database Design",
@@ -66,7 +66,7 @@
           ]
         },
         {
-          "name": "Teknik Yetkinlikler - Frontend",
+          "nameKey": "categories.technicalSkillsFrontend",
           "criteria": [
             "Modern Frontend Framework",
             "State Management",
@@ -75,7 +75,7 @@
           ]
         },
         {
-          "name": "Davranışsal Yetkinlikler",
+          "nameKey": "categories.behavioralSkills",
           "criteria": [
             "Takım Uyumu",
             "İletişim Becerileri",
@@ -87,10 +87,10 @@
     },
     {
       "id": "devops",
-      "name": "DevOps Engineer",
+      "nameKey": "departments.devops",
       "categories": [
         {
-          "name": "Teknik Yetkinlikler",
+          "nameKey": "categories.technicalSkills",
           "criteria": [
             "CI/CD Pipeline",
             "Container & Orchestration (Docker, K8s)",
@@ -101,7 +101,7 @@
           ]
         },
         {
-          "name": "Davranışsal Yetkinlikler",
+          "nameKey": "categories.behavioralSkills",
           "criteria": [
             "Takım Uyumu",
             "İletişim Becerileri",
@@ -113,10 +113,10 @@
     },
     {
       "id": "mobile-native-flutter",
-      "name": "Mobile (Native & Flutter)",
+      "nameKey": "departments.mobileNativeFlutter",
       "categories": [
         {
-          "name": "Teknik Yetkinlikler - Native",
+          "nameKey": "categories.technicalSkillsNative",
           "criteria": [
             "iOS Development (Swift/SwiftUI)",
             "Android Development (Kotlin/Jetpack)",
@@ -127,7 +127,7 @@
           ]
         },
         {
-          "name": "Teknik Yetkinlikler - Flutter",
+          "nameKey": "categories.technicalSkillsFlutter",
           "criteria": [
             "Dart Programming",
             "Widget Architecture",
@@ -138,7 +138,7 @@
           ]
         },
         {
-          "name": "Teknik Yetkinlikler - Genel",
+          "nameKey": "categories.technicalSkillsGeneral",
           "criteria": [
             "REST API & Network Programming",
             "Local Storage & Caching",
@@ -149,7 +149,7 @@
           ]
         },
         {
-          "name": "Davranışsal Yetkinlikler",
+          "nameKey": "categories.behavioralSkills",
           "criteria": [
             "Takım Uyumu",
             "İletişim Becerileri",
@@ -161,4 +161,3 @@
     }
   ]
 }
-

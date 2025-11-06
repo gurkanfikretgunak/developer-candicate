@@ -282,9 +282,9 @@
     "technicalSkillsGeneral": "Teknik Yetkinlikler - Genel"
   },
   "footer": {
-    "projectName": "Developer Aday Değerlendirme Platformu",
-    "madeBy": "tarafından geliştirildi",
-    "builtWith": "ile tasarlandı"
+    "projectName": "Developer Candidate Evaluation Platform",
+    "madeBy": "Made by",
+    "builtWith": "Designed with"
   },
   "report": {
     "title": "Aday Değerlendirme Raporu",
