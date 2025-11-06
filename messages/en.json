@@ -1,0 +1,334 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "loading": "Loading...",
+    "submit": "Submit",
+    "continue": "Continue",
+    "complete": "Complete"
+  },
+  "home": {
+    "title": "Developer Candidate",
+    "subtitle": "Evaluation Platform",
+    "description": "Standardize your hiring process by measuring technical and behavioral competencies",
+    "login": "Login",
+    "register": "Register",
+    "features": {
+      "standardized": "Standardized evaluation methodology",
+      "departmental": "Department-based technical criteria",
+      "detailed": "4-step detailed process",
+      "datadriven": "Data-driven hiring decisions"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "subtitle": "Sign in to your account",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Login",
+      "noAccount": "Don't have an account?",
+      "register": "Register",
+      "backHome": "Back to Home",
+      "loggingIn": "Logging in...",
+      "success": "Login successful!"
+    },
+    "register": {
+      "title": "Register",
+      "subtitle": "Create a new account",
+      "fullName": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "passwordHint": "At least 6 characters",
+      "submit": "Register",
+      "hasAccount": "Already have an account?",
+      "login": "Login",
+      "backHome": "Back to Home",
+      "registering": "Registering...",
+      "success": "Registration successful! Redirecting..."
+    }
+  },
+  "onboarding": {
+    "title": "Create Your Organization",
+    "subtitle": "We need a few details to get started with your hiring process",
+    "companyName": "Company Name",
+    "sector": "Sector",
+    "selectSector": "Select sector",
+    "language": "Language",
+    "selectLanguage": "Select language",
+    "languages": {
+      "en": "English",
+      "tr": "Türkçe"
+    },
+    "creating": "Creating...",
+    "success": "Organization created! You can now start your first candidate evaluation."
+  },
+  "dashboard": {
+    "title": "Candidates",
+    "subtitle": "Manage all your candidate evaluations here",
+    "description": {
+      "line1": "This platform <standardize>standardizes</standardize> your hiring process by enabling you to evaluate candidates based on <objective>objective criteria.</objective>",
+      "line2": "Follow a <fourStep>detailed 4-step</fourStep> evaluation process for each candidate, score <technical>technical and behavioral competencies,</technical> measure <liveCoding>live coding performance,</liveCoding> and document your <final>final decision.</final>",
+      "line3": "Your entire evaluation process is <recorded>recorded</recorded> and can be <anytime>reported at any time.</anytime>"
+    },
+    "addCandidate": "Add New Candidate",
+    "empty": {
+      "title": "No candidates added yet",
+      "description": "You can start your first candidate evaluation",
+      "action": "Add New Candidate"
+    },
+    "header": {
+      "evaluation": "Candidate Evaluation",
+      "settings": "Settings",
+      "logout": "Logout"
+    }
+  },
+  "candidate": {
+    "new": "New Candidate",
+    "back": "Back",
+    "step": "Step",
+    "saving": "Saving...",
+    "completing": "Completing...",
+    "completeEvaluation": "Complete Evaluation",
+    "evaluationComplete": "Evaluation completed!",
+    "candidateSaved": "Candidate saved",
+    "changesSaved": "Changes saved",
+    "fillRequired": "Please fill all required fields",
+    "scoreAtLeastOne": "Please score at least one criterion",
+    "downloadCV": "Download CV",
+    "step1": {
+      "title": "General Information",
+      "fullName": "Full Name",
+      "email": "Email",
+      "position": "Position",
+      "department": "Department",
+      "selectDepartment": "Select department",
+      "evaluators": "Evaluators",
+      "evaluatorsPlaceholder": "Enter evaluator names (comma separated)",
+      "evaluationDate": "Evaluation Date",
+      "cvUpload": "Upload CV",
+      "cvUploaded": "CV Uploaded",
+      "cvRemove": "Remove",
+      "notes": "Notes",
+      "notesPlaceholder": "HR notes, general impressions..."
+    },
+    "step2": {
+      "title": "Technical Evaluation",
+      "overallAverage": "Overall Average",
+      "noDepartment": "Department information not found",
+      "performanceOverview": "Performance Overview",
+      "technicalSkills": "Technical Skills",
+      "behavioralSkills": "Behavioral Skills",
+      "overall": "Overall",
+      "combinedScore": "Combined score",
+      "criteria": "criteria",
+      "scoreLabels": {
+        "0": "",
+        "1": "Poor",
+        "2": "Needs Improvement",
+        "3": "Average",
+        "4": "Good",
+        "5": "Excellent"
+      }
+    },
+    "step3": {
+      "title": "Live Coding",
+      "score": "Score (0-100)",
+      "scoreDescription": "Evaluate live coding performance on a scale of 0-100",
+      "scoreTable": {
+        "title": "Score Interpretation",
+        "excellent": "Excellent",
+        "good": "Good",
+        "average": "Average",
+        "poor": "Poor",
+        "excellentDesc": "Outstanding performance",
+        "goodDesc": "Strong performance",
+        "averageDesc": "Satisfactory performance",
+        "poorDesc": "Needs improvement"
+      },
+      "submissionDate": "Project Submission Date",
+      "submissionDatePlaceholder": "Select submission date",
+      "criteria": {
+        "codeQuality": "Code Quality",
+        "problemSolving": "Problem Solving",
+        "timeManagement": "Time Management",
+        "communication": "Communication"
+      },
+      "solutionUrl": "Solution URL (Optional)",
+      "solutionUrlPlaceholder": "https://github.com/...",
+      "solutionUrlDescription": "GitHub repository or other source link",
+      "notes": "Notes",
+      "notesPlaceholder": "Live coding process, approaches used, strengths/weaknesses..."
+    },
+    "step4": {
+      "title": "Final Evaluation",
+      "calculatedScore": "Calculated Overall Score",
+      "technicalAverage": "Technical Average",
+      "level": "Level Assessment",
+      "selectLevel": "Select level",
+      "levelDescription": "Determine the candidate's overall competency level",
+      "overallScore": "Overall Score (Manual - Optional)",
+      "overallScoreDescription": "You can enter a manual score to override the calculated score",
+      "status": "Candidate Status",
+      "selectStatus": "Select status",
+      "statusDescription": "Determine the candidate's final hiring process status",
+      "summary": "Final Evaluation Summary",
+      "summaryPlaceholder": "Candidate's strengths/weaknesses, general impressions, hiring recommendation...",
+      "levels": {
+        "junior": "Junior",
+        "mid": "Mid",
+        "senior": "Senior",
+        "not-fit": "Not Suitable"
+      },
+      "statuses": {
+        "accepted": "Accepted",
+        "rejected": "Rejected",
+        "postponed": "Postponed",
+        "pending": "Pending"
+      }
+    },
+    "progress": {
+      "step1": "General Information",
+      "step2": "Technical Evaluation",
+      "step3": "Live Coding",
+      "step4": "Final Evaluation"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account and preferences",
+    "tabs": {
+      "general": "General",
+      "departmentCriteria": "Department Criteria"
+    },
+    "profile": {
+      "title": "Profile",
+      "fullName": "Full Name",
+      "email": "Email",
+      "emailReadonly": "Email cannot be changed"
+    },
+    "language": {
+      "title": "Language & Region",
+      "currentLanguage": "Current Language",
+      "selectLanguage": "Select Language",
+      "changeLanguage": "Change Language"
+    },
+    "organization": {
+      "title": "Organization",
+      "name": "Organization Name",
+      "sector": "Sector"
+    },
+    "departmentCriteria": {
+      "title": "Department Criteria",
+      "description": "Customize evaluation criteria for each department",
+      "selectDepartment": "Select Department",
+      "noDepartmentSelected": "Select a department to manage its criteria",
+      "useDefault": "Use Default Criteria",
+      "customize": "Customize Criteria",
+      "categoryName": "Category Name",
+      "addCategory": "Add Category",
+      "addCriterion": "Add Criterion",
+      "criterionPlaceholder": "Enter criterion name",
+      "deleteCategory": "Delete Category",
+      "deleteCriterion": "Delete Criterion",
+      "reset": "Reset to Default",
+      "resetConfirm": "Are you sure you want to reset to default criteria?",
+      "saveSuccess": "Department criteria saved successfully",
+      "deleteSuccess": "Custom criteria deleted, using defaults",
+      "technical": "Technical Skills",
+      "behavioral": "Behavioral Skills"
+    },
+    "actions": {
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "cancel": "Cancel"
+    },
+    "messages": {
+      "profileUpdated": "Profile updated successfully",
+      "languageUpdated": "Language updated successfully. Page will refresh.",
+      "error": "An error occurred"
+    }
+  },
+  "sectors": {
+    "technology": "Technology",
+    "finance": "Finance",
+    "ecommerce": "E-commerce",
+    "healthcare": "Healthcare",
+    "education": "Education",
+    "telecommunications": "Telecommunications",
+    "manufacturing": "Manufacturing",
+    "consulting": "Consulting",
+    "other": "Other"
+  },
+  "departments": {
+    "backendDotnet": "Backend (.NET & Microservice)",
+    "frontendReact": "Frontend (React & Next.js)",
+    "fullstack": "Full Stack Developer",
+    "devops": "DevOps Engineer",
+    "mobileNativeFlutter": "Mobile (Native & Flutter)"
+  },
+  "categories": {
+    "technicalSkills": "Technical Skills",
+    "behavioralSkills": "Behavioral Skills",
+    "technicalSkillsBackend": "Technical Skills - Backend",
+    "technicalSkillsFrontend": "Technical Skills - Frontend",
+    "technicalSkillsNative": "Technical Skills - Native",
+    "technicalSkillsFlutter": "Technical Skills - Flutter",
+    "technicalSkillsGeneral": "Technical Skills - General"
+  },
+  "footer": {
+    "projectName": "Developer Candidate Evaluation Platform",
+    "madeBy": "Made by",
+    "builtWith": "Designed with"
+  },
+  "report": {
+    "title": "Candidate Evaluation Report",
+    "viewReport": "View Report",
+    "copy": "Copy",
+    "copied": "Copied",
+    "download": "Download",
+    "generatedAt": "Report generated at",
+    "sections": {
+      "general": "General Information",
+      "technical": "Technical Evaluation",
+      "criteriaScores": "Criteria Scores",
+      "liveCoding": "Live Coding Assessment",
+      "finalEvaluation": "Final Evaluation",
+      "progress": "Progress Status"
+    },
+    "fields": {
+      "name": "Full Name",
+      "email": "Email",
+      "position": "Position",
+      "department": "Department",
+      "evaluators": "Evaluators",
+      "evaluationDate": "Evaluation Date",
+      "createdAt": "Created At",
+      "cvLink": "CV",
+      "viewCV": "View CV",
+      "notes": "Notes",
+      "overallAverage": "Overall Average",
+      "metric": "Metric",
+      "score": "Score",
+      "overallScore": "Overall Score",
+      "submissionDate": "Submission Date",
+      "solutionUrl": "Solution Link",
+      "viewSolution": "View Solution",
+      "field": "Field",
+      "value": "Value",
+      "level": "Level",
+      "finalScore": "Final Score",
+      "summary": "Summary",
+      "currentStep": "Current Step",
+      "status": "Status",
+      "completed": "Completed",
+      "inProgress": "In Progress"
+    }
+  }
+}
+

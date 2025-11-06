@@ -1,0 +1,164 @@
+{
+  "departments": [
+    {
+      "id": "backend-dotnet",
+      "name": "Backend (.NET & Microservice)",
+      "categories": [
+        {
+          "name": "Teknik Yetkinlikler",
+          "criteria": [
+            "DI ve Object Lifecycle",
+            "Clean Code / SOLID",
+            "Async Programming",
+            "API Design & RESTful Services",
+            "Database & ORM (Entity Framework)",
+            "Microservices Architecture"
+          ]
+        },
+        {
+          "name": "Davranışsal Yetkinlikler",
+          "criteria": [
+            "Takım Uyumu",
+            "İletişim Becerileri",
+            "Problem Çözme",
+            "Öğrenme Motivasyonu"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frontend-react",
+      "name": "Frontend (React & Next.js)",
+      "categories": [
+        {
+          "name": "Teknik Yetkinlikler",
+          "criteria": [
+            "React Hooks & State Management",
+            "TypeScript",
+            "Component Architecture",
+            "Performance Optimization",
+            "CSS & Styling (Tailwind)",
+            "API Integration"
+          ]
+        },
+        {
+          "name": "Davranışsal Yetkinlikler",
+          "criteria": [
+            "Takım Uyumu",
+            "İletişim Becerileri",
+            "Problem Çözme",
+            "Öğrenme Motivasyonu"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fullstack",
+      "name": "Full Stack Developer",
+      "categories": [
+        {
+          "name": "Teknik Yetkinlikler - Backend",
+          "criteria": [
+            "Backend Framework Bilgisi",
+            "Database Design",
+            "API Development",
+            "Authentication & Security"
+          ]
+        },
+        {
+          "name": "Teknik Yetkinlikler - Frontend",
+          "criteria": [
+            "Modern Frontend Framework",
+            "State Management",
+            "Responsive Design",
+            "Browser APIs"
+          ]
+        },
+        {
+          "name": "Davranışsal Yetkinlikler",
+          "criteria": [
+            "Takım Uyumu",
+            "İletişim Becerileri",
+            "Problem Çözme",
+            "Öğrenme Motivasyonu"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "devops",
+      "name": "DevOps Engineer",
+      "categories": [
+        {
+          "name": "Teknik Yetkinlikler",
+          "criteria": [
+            "CI/CD Pipeline",
+            "Container & Orchestration (Docker, K8s)",
+            "Cloud Platforms (AWS/Azure/GCP)",
+            "Infrastructure as Code",
+            "Monitoring & Logging",
+            "Security Best Practices"
+          ]
+        },
+        {
+          "name": "Davranışsal Yetkinlikler",
+          "criteria": [
+            "Takım Uyumu",
+            "İletişim Becerileri",
+            "Problem Çözme",
+            "Proaktif Yaklaşım"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mobile-native-flutter",
+      "name": "Mobile (Native & Flutter)",
+      "categories": [
+        {
+          "name": "Teknik Yetkinlikler - Native",
+          "criteria": [
+            "iOS Development (Swift/SwiftUI)",
+            "Android Development (Kotlin/Jetpack)",
+            "Platform-Specific APIs",
+            "Memory Management",
+            "App Lifecycle & State Management",
+            "Native UI/UX Guidelines"
+          ]
+        },
+        {
+          "name": "Teknik Yetkinlikler - Flutter",
+          "criteria": [
+            "Dart Programming",
+            "Widget Architecture",
+            "State Management (Provider/Bloc/Riverpod)",
+            "Platform Integration",
+            "Custom Widgets & Animations",
+            "Flutter Best Practices"
+          ]
+        },
+        {
+          "name": "Teknik Yetkinlikler - Genel",
+          "criteria": [
+            "REST API & Network Programming",
+            "Local Storage & Caching",
+            "Push Notifications",
+            "App Performance & Optimization",
+            "Security & Authentication",
+            "Testing & Debugging"
+          ]
+        },
+        {
+          "name": "Davranışsal Yetkinlikler",
+          "criteria": [
+            "Takım Uyumu",
+            "İletişim Becerileri",
+            "Problem Çözme",
+            "Öğrenme Motivasyonu"
+          ]
+        }
+      ]
+    }
+  ]
+}
+

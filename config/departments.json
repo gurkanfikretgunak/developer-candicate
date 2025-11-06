@@ -1,0 +1,163 @@
+{
+  "departments": [
+    {
+      "id": "backend-dotnet",
+      "nameKey": "departments.backendDotnet",
+      "categories": [
+        {
+          "nameKey": "categories.technicalSkills",
+          "criteria": [
+            "DI ve Object Lifecycle",
+            "Clean Code / SOLID",
+            "Async Programming",
+            "API Design & RESTful Services",
+            "Database & ORM (Entity Framework)",
+            "Microservices Architecture"
+          ]
+        },
+        {
+          "nameKey": "categories.behavioralSkills",
+          "criteria": [
+            "Takım Uyumu",
+            "İletişim Becerileri",
+            "Problem Çözme",
+            "Öğrenme Motivasyonu"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frontend-react",
+      "nameKey": "departments.frontendReact",
+      "categories": [
+        {
+          "nameKey": "categories.technicalSkills",
+          "criteria": [
+            "React Hooks & State Management",
+            "TypeScript",
+            "Component Architecture",
+            "Performance Optimization",
+            "CSS & Styling (Tailwind)",
+            "API Integration"
+          ]
+        },
+        {
+          "nameKey": "categories.behavioralSkills",
+          "criteria": [
+            "Takım Uyumu",
+            "İletişim Becerileri",
+            "Problem Çözme",
+            "Öğrenme Motivasyonu"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fullstack",
+      "nameKey": "departments.fullstack",
+      "categories": [
+        {
+          "nameKey": "categories.technicalSkillsBackend",
+          "criteria": [
+            "Backend Framework Bilgisi",
+            "Database Design",
+            "API Development",
+            "Authentication & Security"
+          ]
+        },
+        {
+          "nameKey": "categories.technicalSkillsFrontend",
+          "criteria": [
+            "Modern Frontend Framework",
+            "State Management",
+            "Responsive Design",
+            "Browser APIs"
+          ]
+        },
+        {
+          "nameKey": "categories.behavioralSkills",
+          "criteria": [
+            "Takım Uyumu",
+            "İletişim Becerileri",
+            "Problem Çözme",
+            "Öğrenme Motivasyonu"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "devops",
+      "nameKey": "departments.devops",
+      "categories": [
+        {
+          "nameKey": "categories.technicalSkills",
+          "criteria": [
+            "CI/CD Pipeline",
+            "Container & Orchestration (Docker, K8s)",
+            "Cloud Platforms (AWS/Azure/GCP)",
+            "Infrastructure as Code",
+            "Monitoring & Logging",
+            "Security Best Practices"
+          ]
+        },
+        {
+          "nameKey": "categories.behavioralSkills",
+          "criteria": [
+            "Takım Uyumu",
+            "İletişim Becerileri",
+            "Problem Çözme",
+            "Proaktif Yaklaşım"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mobile-native-flutter",
+      "nameKey": "departments.mobileNativeFlutter",
+      "categories": [
+        {
+          "nameKey": "categories.technicalSkillsNative",
+          "criteria": [
+            "iOS Development (Swift/SwiftUI)",
+            "Android Development (Kotlin/Jetpack)",
+            "Platform-Specific APIs",
+            "Memory Management",
+            "App Lifecycle & State Management",
+            "Native UI/UX Guidelines"
+          ]
+        },
+        {
+          "nameKey": "categories.technicalSkillsFlutter",
+          "criteria": [
+            "Dart Programming",
+            "Widget Architecture",
+            "State Management (Provider/Bloc/Riverpod)",
+            "Platform Integration",
+            "Custom Widgets & Animations",
+            "Flutter Best Practices"
+          ]
+        },
+        {
+          "nameKey": "categories.technicalSkillsGeneral",
+          "criteria": [
+            "REST API & Network Programming",
+            "Local Storage & Caching",
+            "Push Notifications",
+            "App Performance & Optimization",
+            "Security & Authentication",
+            "Testing & Debugging"
+          ]
+        },
+        {
+          "nameKey": "categories.behavioralSkills",
+          "criteria": [
+            "Takım Uyumu",
+            "İletişim Becerileri",
+            "Problem Çözme",
+            "Öğrenme Motivasyonu"
+          ]
+        }
+      ]
+    }
+  ]
+}

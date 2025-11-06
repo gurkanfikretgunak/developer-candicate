@@ -1,0 +1,334 @@
+{
+  "common": {
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "back": "Geri",
+    "next": "İleri",
+    "previous": "Önceki",
+    "loading": "Yükleniyor...",
+    "submit": "Gönder",
+    "continue": "Devam Et",
+    "complete": "Tamamla"
+  },
+  "home": {
+    "title": "Developer Aday",
+    "subtitle": "Değerlendirme Platformu",
+    "description": "Teknik ve davranışsal yetkinlikleri ölçerek işe alım sürecinizi standartlaştırın",
+    "login": "Giriş Yap",
+    "register": "Kayıt Ol",
+    "features": {
+      "standardized": "Standart değerlendirme metodolojisi",
+      "departmental": "Departman bazlı teknik kriterler",
+      "detailed": "4 adımlı detaylı süreç",
+      "datadriven": "Veriye dayalı işe alım kararları"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Giriş Yap",
+      "subtitle": "Hesabınıza giriş yapın",
+      "email": "E-posta",
+      "password": "Şifre",
+      "submit": "Giriş Yap",
+      "noAccount": "Hesabınız yok mu?",
+      "register": "Kayıt Ol",
+      "backHome": "Ana Sayfaya Dön",
+      "loggingIn": "Giriş yapılıyor...",
+      "success": "Giriş başarılı!"
+    },
+    "register": {
+      "title": "Kayıt Ol",
+      "subtitle": "Yeni hesap oluşturun",
+      "fullName": "Ad Soyad",
+      "email": "E-posta",
+      "password": "Şifre",
+      "passwordHint": "En az 6 karakter",
+      "submit": "Kayıt Ol",
+      "hasAccount": "Zaten hesabınız var mı?",
+      "login": "Giriş Yap",
+      "backHome": "Ana Sayfaya Dön",
+      "registering": "Kayıt yapılıyor...",
+      "success": "Kayıt başarılı! Yönlendiriliyorsunuz..."
+    }
+  },
+  "onboarding": {
+    "title": "Organizasyonunuzu Oluşturun",
+    "subtitle": "İşe alım sürecinize başlamak için birkaç bilgiye ihtiyacımız var",
+    "companyName": "Şirket Adı",
+    "sector": "Sektör",
+    "selectSector": "Sektör seçin",
+    "language": "Dil",
+    "selectLanguage": "Dil seçin",
+    "languages": {
+      "en": "English",
+      "tr": "Türkçe"
+    },
+    "creating": "Oluşturuluyor...",
+    "success": "Organizasyon oluşturuldu! İlk adayınızın sürecini başlatabilirsiniz."
+  },
+  "dashboard": {
+    "title": "Adaylar",
+    "subtitle": "Tüm aday değerlendirmelerinizi buradan yönetin",
+    "description": {
+      "line1": "Bu platform, işe alım sürecinizi <standardize>standartlaştırarak</standardize> adayları <objective>objektif kriterlere</objective> göre değerlendirmenizi sağlar.",
+      "line2": "Her aday için <fourStep>4 adımlı detaylı</fourStep> bir değerlendirme süreci izleyebilir, <technical>teknik ve davranışsal yetkinlikleri</technical> puanlayabilir, <liveCoding>live coding performansını</liveCoding> ölçebilir ve <final>nihai kararınızı</final> raporlayabilirsiniz.",
+      "line3": "Tüm değerlendirme süreciniz <recorded>kayıt altında</recorded> tutulur ve <anytime>istediğiniz zaman raporlanabilir.</anytime>"
+    },
+    "addCandidate": "Yeni Aday Ekle",
+    "empty": {
+      "title": "Henüz aday eklenmemiş",
+      "description": "İlk adayınızın sürecini başlatabilirsiniz",
+      "action": "Yeni Aday Ekle"
+    },
+    "header": {
+      "evaluation": "Aday Değerlendirme",
+      "settings": "Ayarlar",
+      "logout": "Çıkış Yap"
+    }
+  },
+  "candidate": {
+    "new": "Yeni Aday",
+    "back": "Geri",
+    "step": "Adım",
+    "saving": "Kaydediliyor...",
+    "completing": "Tamamlanıyor...",
+    "completeEvaluation": "Değerlendirmeyi Tamamla",
+    "evaluationComplete": "Değerlendirme tamamlandı!",
+    "candidateSaved": "Aday kaydedildi",
+    "changesSaved": "Değişiklikler kaydedildi",
+    "fillRequired": "Lütfen tüm zorunlu alanları doldurun",
+    "scoreAtLeastOne": "Lütfen en az bir kriter puanlayın",
+    "downloadCV": "CV İndir",
+    "step1": {
+      "title": "Genel Bilgiler",
+      "fullName": "Ad Soyad",
+      "email": "E-posta",
+      "position": "Pozisyon",
+      "department": "Departman",
+      "selectDepartment": "Departman seçin",
+      "evaluators": "Değerlendirenler",
+      "evaluatorsPlaceholder": "Değerlendiren isimleri girin (virgülle ayırın)",
+      "evaluationDate": "Değerlendirme Tarihi",
+      "cvUpload": "CV Yükle",
+      "cvUploaded": "CV Yüklendi",
+      "cvRemove": "Kaldır",
+      "notes": "Notlar",
+      "notesPlaceholder": "İK notları, genel izlenimler..."
+    },
+    "step2": {
+      "title": "Teknik Değerlendirme",
+      "overallAverage": "Genel Ortalama",
+      "noDepartment": "Departman bilgisi bulunamadı",
+      "performanceOverview": "Performans Özeti",
+      "technicalSkills": "Teknik Yetkinlikler",
+      "behavioralSkills": "Davranışsal Yetkinlikler",
+      "overall": "Genel",
+      "combinedScore": "Birleşik puan",
+      "criteria": "kriter",
+      "scoreLabels": {
+        "0": "",
+        "1": "Zayıf",
+        "2": "Geliştirilmeli",
+        "3": "Orta",
+        "4": "İyi",
+        "5": "Mükemmel"
+      }
+    },
+    "step3": {
+      "title": "Live Coding",
+      "score": "Puan (0-100)",
+      "scoreDescription": "Live coding performansını 0-100 aralığında değerlendirin",
+      "scoreTable": {
+        "title": "Puan Yorumlama",
+        "excellent": "Mükemmel",
+        "good": "İyi",
+        "average": "Orta",
+        "poor": "Zayıf",
+        "excellentDesc": "Olağanüstü performans",
+        "goodDesc": "Güçlü performans",
+        "averageDesc": "Tatmin edici performans",
+        "poorDesc": "Geliştirilmeli"
+      },
+      "submissionDate": "Proje Teslim Tarihi",
+      "submissionDatePlaceholder": "Teslim tarihini seçin",
+      "criteria": {
+        "codeQuality": "Kod Kalitesi",
+        "problemSolving": "Problem Çözme",
+        "timeManagement": "Zaman Yönetimi",
+        "communication": "İletişim"
+      },
+      "solutionUrl": "Çözüm URL'si (Opsiyonel)",
+      "solutionUrlPlaceholder": "https://github.com/...",
+      "solutionUrlDescription": "GitHub repository veya başka bir kaynak linki",
+      "notes": "Notlar",
+      "notesPlaceholder": "Live coding süreci, kullanılan yaklaşımlar, güçlü/zayıf yönler..."
+    },
+    "step4": {
+      "title": "Nihai Değerlendirme",
+      "calculatedScore": "Hesaplanan Genel Puan",
+      "technicalAverage": "Teknik Ortalama",
+      "level": "Seviye Değerlendirmesi",
+      "selectLevel": "Seviye seçin",
+      "levelDescription": "Adayın genel yetkinlik seviyesini belirleyin",
+      "overallScore": "Genel Puan (Manuel - Opsiyonel)",
+      "overallScoreDescription": "İsterseniz hesaplanan puanın üzerine manuel puan girebilirsiniz",
+      "status": "Aday Durumu",
+      "selectStatus": "Durum seçin",
+      "statusDescription": "Adayın işe alım sürecindeki nihai durumunu belirleyin",
+      "summary": "Nihai Değerlendirme Özeti",
+      "summaryPlaceholder": "Adayın güçlü/zayıf yönleri, genel izlenimler, işe alım önerisi...",
+      "levels": {
+        "junior": "Junior",
+        "mid": "Mid",
+        "senior": "Senior",
+        "not-fit": "Uygun Değil"
+      },
+      "statuses": {
+        "accepted": "Kabul Edildi",
+        "rejected": "Reddedildi",
+        "postponed": "Ertelendi",
+        "pending": "Beklemede"
+      }
+    },
+    "progress": {
+      "step1": "Genel Bilgiler",
+      "step2": "Teknik Değerlendirme",
+      "step3": "Live Coding",
+      "step4": "Nihai Değerlendirme"
+    }
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "subtitle": "Hesabınızı ve tercihlerinizi yönetin",
+    "tabs": {
+      "general": "Genel",
+      "departmentCriteria": "Departman Kriterleri"
+    },
+    "profile": {
+      "title": "Profil",
+      "fullName": "Ad Soyad",
+      "email": "E-posta",
+      "emailReadonly": "E-posta değiştirilemez"
+    },
+    "language": {
+      "title": "Dil & Bölge",
+      "currentLanguage": "Şu Anki Dil",
+      "selectLanguage": "Dil Seçin",
+      "changeLanguage": "Dili Değiştir"
+    },
+    "organization": {
+      "title": "Organizasyon",
+      "name": "Organizasyon Adı",
+      "sector": "Sektör"
+    },
+    "departmentCriteria": {
+      "title": "Departman Kriterleri",
+      "description": "Her departman için değerlendirme kriterlerini özelleştirin",
+      "selectDepartment": "Departman Seçin",
+      "noDepartmentSelected": "Kriterlerini yönetmek için bir departman seçin",
+      "useDefault": "Varsayılan Kriterleri Kullan",
+      "customize": "Kriterleri Özelleştir",
+      "categoryName": "Kategori Adı",
+      "addCategory": "Kategori Ekle",
+      "addCriterion": "Kriter Ekle",
+      "criterionPlaceholder": "Kriter adını girin",
+      "deleteCategory": "Kategoriyi Sil",
+      "deleteCriterion": "Kriteri Sil",
+      "reset": "Varsayılana Sıfırla",
+      "resetConfirm": "Varsayılan kriterlere sıfırlamak istediğinizden emin misiniz?",
+      "saveSuccess": "Departman kriterleri başarıyla kaydedildi",
+      "deleteSuccess": "Özel kriterler silindi, varsayılanlar kullanılıyor",
+      "technical": "Teknik Yetkinlikler",
+      "behavioral": "Davranışsal Yetkinlikler"
+    },
+    "actions": {
+      "save": "Değişiklikleri Kaydet",
+      "saving": "Kaydediliyor...",
+      "cancel": "İptal"
+    },
+    "messages": {
+      "profileUpdated": "Profil başarıyla güncellendi",
+      "languageUpdated": "Dil başarıyla güncellendi. Sayfa yenilenecek.",
+      "error": "Bir hata oluştu"
+    }
+  },
+  "sectors": {
+    "technology": "Teknoloji",
+    "finance": "Finans",
+    "ecommerce": "E-ticaret",
+    "healthcare": "Sağlık",
+    "education": "Eğitim",
+    "telecommunications": "Telekomünikasyon",
+    "manufacturing": "Üretim",
+    "consulting": "Danışmanlık",
+    "other": "Diğer"
+  },
+  "departments": {
+    "backendDotnet": "Backend (.NET & Microservice)",
+    "frontendReact": "Frontend (React & Next.js)",
+    "fullstack": "Full Stack Developer",
+    "devops": "DevOps Engineer",
+    "mobileNativeFlutter": "Mobile (Native & Flutter)"
+  },
+  "categories": {
+    "technicalSkills": "Teknik Yetkinlikler",
+    "behavioralSkills": "Davranışsal Yetkinlikler",
+    "technicalSkillsBackend": "Teknik Yetkinlikler - Backend",
+    "technicalSkillsFrontend": "Teknik Yetkinlikler - Frontend",
+    "technicalSkillsNative": "Teknik Yetkinlikler - Native",
+    "technicalSkillsFlutter": "Teknik Yetkinlikler - Flutter",
+    "technicalSkillsGeneral": "Teknik Yetkinlikler - Genel"
+  },
+  "footer": {
+    "projectName": "Developer Aday Değerlendirme Platformu",
+    "madeBy": "tarafından geliştirildi",
+    "builtWith": "ile tasarlandı"
+  },
+  "report": {
+    "title": "Aday Değerlendirme Raporu",
+    "viewReport": "Raporu Görüntüle",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "download": "İndir",
+    "generatedAt": "Rapor oluşturulma tarihi",
+    "sections": {
+      "general": "Genel Bilgiler",
+      "technical": "Teknik Değerlendirme",
+      "criteriaScores": "Kriter Puanları",
+      "liveCoding": "Live Coding Değerlendirmesi",
+      "finalEvaluation": "Nihai Değerlendirme",
+      "progress": "Süreç Durumu"
+    },
+    "fields": {
+      "name": "Ad Soyad",
+      "email": "E-posta",
+      "position": "Pozisyon",
+      "department": "Departman",
+      "evaluators": "Değerlendirenler",
+      "evaluationDate": "Değerlendirme Tarihi",
+      "createdAt": "Oluşturulma Tarihi",
+      "cvLink": "CV",
+      "viewCV": "CV'yi Görüntüle",
+      "notes": "Notlar",
+      "overallAverage": "Genel Ortalama",
+      "metric": "Metrik",
+      "score": "Puan",
+      "overallScore": "Genel Puan",
+      "submissionDate": "Teslim Tarihi",
+      "solutionUrl": "Çözüm Linki",
+      "viewSolution": "Çözümü Görüntüle",
+      "field": "Alan",
+      "value": "Değer",
+      "level": "Seviye",
+      "finalScore": "Nihai Puan",
+      "summary": "Özet",
+      "currentStep": "Mevcut Adım",
+      "status": "Durum",
+      "completed": "Tamamlandı",
+      "inProgress": "Devam Ediyor"
+    }
+  }
+}
+
