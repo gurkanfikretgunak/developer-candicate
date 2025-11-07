@@ -94,33 +94,33 @@ export function Step4Final({ data, onChange, candidate, validationErrors = {} }:
       <div className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Level */}
-          <div className="space-y-2">
-            <Label htmlFor="level">{t('level')} *</Label>
-            <Select
-              value={data.level || ''}
-              onValueChange={(value: any) => handleChange('level', value)}
-              required
-            >
+        <div className="space-y-2">
+          <Label htmlFor="level">{t('level')} *</Label>
+          <Select
+            value={data.level || ''}
+            onValueChange={(value: any) => handleChange('level', value)}
+            required
+          >
               <SelectTrigger 
                 id="level"
                 className={validationErrors.level ? 'border-red-500 focus:ring-red-500' : ''}
               >
-                <SelectValue placeholder={t('selectLevel')} />
-              </SelectTrigger>
-              <SelectContent>
-                {levelOptions.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {t(`levels.${option.value}` as any)}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+              <SelectValue placeholder={t('selectLevel')} />
+            </SelectTrigger>
+            <SelectContent>
+              {levelOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {t(`levels.${option.value}` as any)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
             {validationErrors.level ? (
               <p className="text-sm text-red-500">{t('level')} is required</p>
             ) : (
-              <p className="text-xs text-gray-500">
-                {t('levelDescription')}
-              </p>
+          <p className="text-xs text-gray-500">
+            {t('levelDescription')}
+          </p>
             )}
           </div>
 

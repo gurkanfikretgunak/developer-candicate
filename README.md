@@ -21,6 +21,7 @@ This platform revolutionizes your hiring process by providing a **structured 4-s
 - **🌍 Multi-Language Support** - English and Turkish with easy extensibility
 - **📈 Real-Time Analytics** - Visual performance metrics and progress tracking
 - **🎨 Modern UI/UX** - Intuitive interface with smooth animations
+- **🧑‍💻 Open Hiring Funnel** - Collect inbound applications with a public hiring page
 
 ## ✨ Features
 
@@ -80,6 +81,14 @@ This platform revolutionizes your hiring process by providing a **structured 4-s
   - Full English and Turkish support
   - Easy to add new languages
   - Context-aware translations
+
+- **🧑‍💻 Public Hiring & Compliance**
+  - Public-facing hiring page with Supabase-backed submissions
+  - Policy management (GDPR, privacy, cookies) stored in Supabase
+  - Consent tracking during registration and ongoing compliance enforcement
+  - Secure URL validation and sanitization for portfolio links
+  - One-click conversion from applications to candidates
+  - Duplicate prevention for application-to-candidate conversions
 
 ## 🛠️ Tech Stack
 
@@ -151,6 +160,8 @@ supabase/migrations/001_initial_schema.sql
 supabase/migrations/002_add_language.sql
 supabase/migrations/003_add_cv_and_evaluators.sql
 supabase/migrations/004_add_department_criteria.sql
+supabase/migrations/005_hiring_and_compliance.sql
+supabase/migrations/006_application_candidate_link.sql
 ```
 
 **Optional:** Set up CV storage bucket (see `supabase/STORAGE_SETUP.md`)
@@ -235,6 +246,24 @@ If a candidate has an uploaded CV:
 - Click the **Download CV** button on the candidate card
 - CV will be downloaded directly to your device
 
+### Public Hiring Applications
+
+- Visit `/hiring` to view the public-facing careers page
+- Applicants submit name, email, preferred role, portfolio URL, and cover letter
+- **Secure URL Validation**: All portfolio URLs are validated and sanitized server-side before storage
+- **Safe Link Rendering**: Portfolio links are displayed using secure components with preview dialogs
+- Submissions are stored in the `public_applications` table
+- View all applications in `/dashboard/hiring`
+- Convert applications to candidates with one click - pre-fills candidate information automatically
+- Once converted, applications cannot be converted again (prevents duplicates)
+
+### Managing Policies & Compliance
+
+- Policies are stored in the `policies` table (`gdpr`, `privacy`, `cookies`)
+- Update or replace policy content directly from Supabase; the UI always pulls the latest copy
+- New users must accept GDPR and cookie policies during registration
+- Existing users without acceptance timestamps are redirected to `/compliance` to review and accept policies
+
 ## 🏗️ Architecture
 
 ### Database Schema
@@ -310,7 +339,11 @@ developer/
 │   ├── dashboard/                # Main application
 │   │   ├── page.tsx             # Candidates list
 │   │   ├── candidate/[id]/      # Candidate evaluation
+│   │   ├── hiring/              # Hiring applications list
 │   │   └── settings/            # Settings page
+│   ├── hiring/                  # Public hiring page
+│   ├── policies/                # Policy pages (GDPR, Privacy, Cookies)
+│   ├── compliance/              # Compliance acceptance page
 │   ├── onboarding/              # Organization setup
 │   └── page.tsx                 # Landing page
 ├── components/
@@ -320,6 +353,11 @@ developer/
 │   │   ├── Step2_Technical.tsx
 │   │   ├── Step3_LiveCoding.tsx
 │   │   └── Step4_Final.tsx
+│   ├── hiring/                  # Hiring-related components
+│   │   ├── ApplicationForm.tsx
+│   │   └── SafePortfolioLink.tsx
+│   ├── compliance/              # Compliance components
+│   │   └── AcceptanceForm.tsx
 │   ├── shared/                  # Reusable components
 │   │   ├── CandidateCard.tsx
 │   │   ├── CandidateReport.tsx
@@ -327,20 +365,27 @@ developer/
 │   │   └── Footer.tsx
 │   ├── settings/                # Settings components
 │   └── ui/                      # shadcn/ui components
+├── src/
+│   ├── lib/                     # Core libraries
+│   │   ├── i18n.ts              # Internationalization config
+│   │   └── url-security.ts      # URL validation & sanitization
+│   ├── store/                   # Zustand stores
+│   │   ├── useAuthStore.ts
+│   │   └── useOrgStore.ts
+│   ├── messages/                # i18n translations
+│   │   ├── en.json
+│   │   └── tr.json
+│   ├── config/                  # Configuration files
+│   │   ├── departments.json
+│   │   ├── assessment.ts
+│   │   ├── app.ts
+│   │   └── policies.ts
+│   └── middleware.ts            # Route protection middleware
 ├── lib/
 │   ├── actions.ts               # Server Actions
 │   ├── supabase.ts             # Supabase client
 │   ├── types.ts                # TypeScript types
 │   └── utils.ts                # Utility functions
-├── config/
-│   ├── departments.json         # Department definitions
-│   └── assessment.ts           # Assessment helpers
-├── messages/                    # i18n translations
-│   ├── en.json
-│   └── tr.json
-├── store/                       # Zustand stores
-│   ├── useAuthStore.ts
-│   └── useOrgStore.ts
 └── supabase/
     ├── migrations/              # Database migrations
     └── STORAGE_SETUP.md        # CV storage guide
@@ -356,8 +401,8 @@ Edit `config/departments.json`:
 {
   "id": "data-science",
   "nameKey": "departments.dataScience",
-  "categories": [
-    {
+      "categories": [
+        {
       "nameKey": "categories.technicalSkills",
       "criteria": [
         "Python/R Programming",
@@ -435,6 +480,28 @@ All tables have RLS policies ensuring:
 Middleware (`middleware.ts`) protects:
 - `/dashboard/*` - Requires authentication
 - `/onboarding` - Requires auth, redirects if org exists
+- `/compliance` - Redirects authenticated users without GDPR/cookie acceptance
+
+### URL Security
+
+The platform implements multi-layer URL security for portfolio links:
+
+**Server-Side Validation:**
+- Only HTTP/HTTPS protocols allowed
+- Blocks dangerous protocols (`javascript:`, `data:`, etc.)
+- Prevents internal/private IP addresses (localhost, 192.168.x.x, etc.)
+- URL sanitization and format validation
+
+**Client-Side Rendering:**
+- Safe link components with `rel="noopener noreferrer"`
+- Visual security indicators (HTTPS badge)
+- Preview dialog before opening external links
+- Invalid URL warnings displayed to users
+
+**Security Layers:**
+1. Form submission validation (server-side)
+2. Database storage (sanitized URLs only)
+3. Display rendering (safe link components)
 
 ## 📊 Reporting
 
@@ -507,6 +574,8 @@ Migrations are located in `supabase/migrations/`. Run them in order:
 2. **002_add_language.sql** - Language support
 3. **003_add_cv_and_evaluators.sql** - CV and evaluator fields
 4. **004_add_department_criteria.sql** - Custom criteria support
+5. **005_hiring_and_compliance.sql** - Public hiring submissions, policies, and consent tracking
+6. **006_application_candidate_link.sql** - Link applications to candidates, prevent duplicate conversions
 
 ### Adding New Features
 
@@ -596,7 +665,7 @@ Contributions are welcome! Please follow these steps:
    git commit -m "feat: add amazing feature"
    ```
 5. **Push to your fork**
-   ```bash
+```bash
    git push origin feature/amazing-feature
    ```
 6. **Open a Pull Request**

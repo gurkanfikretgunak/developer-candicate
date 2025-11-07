@@ -98,17 +98,17 @@ export function CandidateCard({ candidate }: CandidateCardProps) {
               <div className="flex items-center gap-2">
                 <h3 className="font-semibold text-lg text-gray-900">{name}</h3>
                 <div className="flex items-center gap-1">
-                  {hasCv && (
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-7 w-7 hover:bg-gray-100"
-                      onClick={handleCvPreview}
-                      title="View CV"
-                    >
-                      <FileText className="h-4 w-4 text-gray-600" />
-                    </Button>
-                  )}
+                {hasCv && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-7 w-7 hover:bg-gray-100"
+                    onClick={handleCvPreview}
+                    title="View CV"
+                  >
+                    <FileText className="h-4 w-4 text-gray-600" />
+                  </Button>
+                )}
                   <div onClick={handleReportClick}>
                     <CandidateReport 
                       candidate={candidate}

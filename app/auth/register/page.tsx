@@ -11,6 +11,7 @@ import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { Checkbox } from '@/components/ui/checkbox';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -18,10 +19,17 @@ export default function RegisterPage() {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [gdprAccepted, setGdprAccepted] = useState(false);
+  const [cookiesAccepted, setCookiesAccepted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!gdprAccepted || !cookiesAccepted) {
+      toast.error(t('mustAccept'));
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -39,6 +47,21 @@ export default function RegisterPage() {
       if (error) {
         toast.error(error.message);
       } else {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+
+        if (user) {
+          const timestamp = new Date().toISOString();
+          await supabase
+            .from('user_profiles')
+            .update({
+              gdpr_accepted_at: timestamp,
+              cookies_accepted_at: timestamp,
+            })
+            .eq('id', user.id);
+        }
+
         toast.success(t('success'));
         router.push('/onboarding');
         router.refresh();
@@ -112,6 +135,38 @@ export default function RegisterPage() {
                 className=""
               />
               <p className="text-xs text-gray-500">{t('passwordHint')}</p>
+            </div>
+
+            <div className="space-y-3 bg-gray-50 border border-gray-200 rounded-lg p-4">
+              <div className="flex items-start gap-3">
+                <Checkbox
+                  id="gdpr"
+                  checked={gdprAccepted}
+                  onCheckedChange={(checked) => setGdprAccepted(Boolean(checked))}
+                  disabled={isLoading}
+                />
+                <Label htmlFor="gdpr" className="text-sm text-gray-700">
+                  {t('acceptGdpr')}{' '}
+                  <Link href="/policies#gdpr" className="text-blue-600 underline">
+                    {t('viewPolicies')}
+                  </Link>
+                </Label>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <Checkbox
+                  id="cookies"
+                  checked={cookiesAccepted}
+                  onCheckedChange={(checked) => setCookiesAccepted(Boolean(checked))}
+                  disabled={isLoading}
+                />
+                <Label htmlFor="cookies" className="text-sm text-gray-700">
+                  {t('acceptCookies')}{' '}
+                  <Link href="/policies#cookies" className="text-blue-600 underline">
+                    {t('viewPolicies')}
+                  </Link>
+                </Label>
+              </div>
             </div>
 
             <Button type="submit" className="w-full" disabled={isLoading}>

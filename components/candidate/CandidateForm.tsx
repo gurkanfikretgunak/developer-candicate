@@ -19,9 +19,11 @@ import { useTranslations } from 'next-intl';
 interface CandidateFormProps {
   candidate?: Candidate | null;
   isNew: boolean;
+  prefillStep1?: Step1Data;
+  applicationId?: string;
 }
 
-export function CandidateForm({ candidate, isNew }: CandidateFormProps) {
+export function CandidateForm({ candidate, isNew, prefillStep1, applicationId }: CandidateFormProps) {
   const router = useRouter();
   const t = useTranslations('candidate');
   const tCommon = useTranslations('common');
@@ -46,9 +48,12 @@ export function CandidateForm({ candidate, isNew }: CandidateFormProps) {
     summary?: boolean;
   }>({});
   
-  const [step1Data, setStep1Data] = useState<Step1Data>(
-    candidate?.step1_general || { evaluationDate: new Date().toISOString().split('T')[0] }
-  );
+  const initialStep1: Step1Data = candidate?.step1_general
+    || {
+      ...(prefillStep1 || {}),
+      evaluationDate: (prefillStep1 && prefillStep1.evaluationDate) || new Date().toISOString().split('T')[0],
+    };
+  const [step1Data, setStep1Data] = useState<Step1Data>(initialStep1);
   const [step2Scores, setStep2Scores] = useState<Record<string, number>>(
     candidate?.step2_scores || {}
   );
@@ -226,7 +231,7 @@ export function CandidateForm({ candidate, isNew }: CandidateFormProps) {
       };
 
       if (isNew && !candidateId) {
-        const result = await createCandidate(candidateData);
+        const result = await createCandidate(candidateData, applicationId);
         if (result.error) {
           toast.error(result.error);
         } else {

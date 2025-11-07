@@ -165,13 +165,13 @@ export function DepartmentCriteriaManager() {
             <SelectTrigger>
               <SelectValue placeholder={t('selectDepartment')} />
             </SelectTrigger>
-          <SelectContent>
-            {departments.map((dept) => (
-              <SelectItem key={dept.id} value={dept.id}>
+            <SelectContent>
+              {departments.map((dept) => (
+                <SelectItem key={dept.id} value={dept.id}>
                 {dept.nameKey ? tDept(dept.nameKey.split('.')[1] as any) : dept.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
+                </SelectItem>
+              ))}
+            </SelectContent>
           </Select>
         </div>
 

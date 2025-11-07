@@ -65,6 +65,11 @@ export function Header({ organization, profile }: HeaderProps) {
               Dashboard
             </Button>
           </Link>
+          <Link href="/dashboard/hiring">
+            <Button variant="ghost" size="sm">
+              Hiring
+            </Button>
+          </Link>
 
           <DropdownMenu>
           <DropdownMenuTrigger asChild suppressHydrationWarning>

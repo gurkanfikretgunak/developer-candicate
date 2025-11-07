@@ -50,7 +50,11 @@
       "login": "Login",
       "backHome": "Back to Home",
       "registering": "Registering...",
-      "success": "Registration successful! Redirecting..."
+      "success": "Registration successful! Redirecting...",
+      "acceptGdpr": "I agree to the GDPR policy and understand how my data will be used.",
+      "acceptCookies": "I consent to the required cookies needed for secure usage.",
+      "mustAccept": "Please accept the GDPR and cookie policies to continue.",
+      "viewPolicies": "View policies"
     }
   },
   "onboarding": {

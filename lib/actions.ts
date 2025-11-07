@@ -152,7 +152,7 @@ export async function updateUserLanguage(language: string) {
 }
 
 // Candidate Actions
-export async function createCandidate(data: Partial<Candidate>) {
+export async function createCandidate(data: Partial<Candidate>, applicationId?: string) {
   const supabase = await createServerSupabaseClient();
   
   const { data: { user }, error: userError } = await supabase.auth.getUser();
@@ -188,6 +188,17 @@ export async function createCandidate(data: Partial<Candidate>) {
 
   if (error) {
     return { error: error.message };
+  }
+
+  if (candidate && applicationId) {
+    await supabase
+      .from('public_applications')
+      .update({
+        candidate_id: candidate.id,
+        converted_at: new Date().toISOString(),
+      })
+      .eq('id', applicationId);
+    revalidatePath('/dashboard/hiring');
   }
 
   revalidatePath('/dashboard');

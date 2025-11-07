@@ -48,9 +48,12 @@ export async function middleware(request: NextRequest) {
     }
 
   const isAuthPage = request.nextUrl.pathname.startsWith('/auth');
-  const isOnboarding = request.nextUrl.pathname === '/onboarding';
-  const isDashboard = request.nextUrl.pathname.startsWith('/dashboard');
-  const isHome = request.nextUrl.pathname === '/';
+  const pathname = request.nextUrl.pathname;
+  const isOnboarding = pathname === '/onboarding';
+  const isDashboard = pathname.startsWith('/dashboard');
+  const isHome = pathname === '/';
+  const isCompliance = pathname === '/compliance';
+  const isPolicies = pathname.startsWith('/policies');
 
   // If user is not logged in and trying to access protected routes
   if (!user && (isDashboard || isOnboarding)) {
@@ -65,7 +68,7 @@ export async function middleware(request: NextRequest) {
         // Check if user has organization
         const { data: profile, error: profileError } = await supabase
           .from('user_profiles')
-          .select('organization_id')
+          .select('organization_id, gdpr_accepted_at, cookies_accepted_at')
           .eq('id', user.id)
           .single();
 
@@ -76,6 +79,13 @@ export async function middleware(request: NextRequest) {
         }
 
         const hasOrganization = profile?.organization_id;
+        const needsCompliance = !profile?.gdpr_accepted_at || !profile?.cookies_accepted_at;
+
+        if (needsCompliance && !isCompliance && !isPolicies && !isAuthPage) {
+          const url = request.nextUrl.clone();
+          url.pathname = '/compliance';
+          return NextResponse.redirect(url);
+        }
 
         // Redirect to onboarding if no organization (except if already on onboarding or auth pages)
         if (!hasOrganization && !isOnboarding && !isAuthPage) {

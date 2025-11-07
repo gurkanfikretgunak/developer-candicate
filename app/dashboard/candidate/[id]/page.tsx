@@ -1,16 +1,22 @@
 import { getCandidateById } from '@/lib/actions';
 import { CandidateForm } from '@/components/candidate/CandidateForm';
 import { notFound } from 'next/navigation';
+import { createServerSupabaseClient } from '@/lib/supabase';
+import type { Step1Data } from '@/lib/types';
 
 interface PageProps {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ applicationId?: string }>;
 }
 
-export default async function CandidatePage({ params }: PageProps) {
+export default async function CandidatePage({ params, searchParams }: PageProps) {
   const { id } = await params;
+  const query = await searchParams;
   const isNew = id === 'new';
 
   let candidate = null;
+  let prefillStep1: Step1Data | undefined;
+  let applicationId: string | undefined;
 
   if (!isNew) {
     const result = await getCandidateById(id);
@@ -18,8 +24,33 @@ export default async function CandidatePage({ params }: PageProps) {
       notFound();
     }
     candidate = result.data;
+  } else if (query?.applicationId) {
+    applicationId = query.applicationId;
+    const supabase = await createServerSupabaseClient();
+    const { data: application } = await supabase
+      .from('public_applications')
+      .select('name, email, role, cover_letter')
+      .eq('id', query.applicationId)
+      .single();
+
+    if (application) {
+      prefillStep1 = {
+        name: application.name || undefined,
+        email: application.email || undefined,
+        position: application.role || undefined,
+        notes: application.cover_letter || undefined,
+        evaluationDate: new Date().toISOString().split('T')[0],
+      };
+    }
   }
 
-  return <CandidateForm candidate={candidate} isNew={isNew} />;
+  return (
+    <CandidateForm
+      candidate={candidate}
+      isNew={isNew}
+      prefillStep1={prefillStep1}
+      applicationId={applicationId}
+    />
+  );
 }
 

@@ -5,8 +5,6 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle2, Globe2, Users, BarChart3, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { Badge } from '@/components/ui/badge';
-import { appConfig } from '@/config/app';
 
 export default function Home() {
   const t = useTranslations('home');
@@ -36,12 +34,12 @@ export default function Home() {
               className="space-y-8"
             >
               {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-sm font-medium"
-              >
+        >
                 <Globe2 className="h-4 w-4" />
                 <span>Open Source Hiring Platform</span>
               </motion.div>
@@ -49,15 +47,15 @@ export default function Home() {
               {/* Title */}
               <div className="space-y-4">
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 leading-tight">
-                  {t('title')}
+            {t('title')}
                   <span className="block bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mt-2">
                     {t('subtitle')}
                   </span>
-                </h1>
-                
+          </h1>
+          
                 <p className="text-xl text-gray-600 leading-relaxed max-w-xl">
-                  {t('description')}
-                </p>
+            {t('description')}
+          </p>
               </div>
 
               {/* CTA Buttons */}
@@ -65,37 +63,37 @@ export default function Home() {
                 <Link href="/auth/register">
                   <Button size="lg" className="text-lg px-8 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transition-all">
                     {t('register')}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
                 <Link href="/auth/login">
                   <Button size="lg" variant="outline" className="text-lg px-8 border-2">
                     {t('login')}
-                  </Button>
-                </Link>
-              </div>
+              </Button>
+            </Link>
+          </div>
 
               {/* Feature Pills */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
                 className="flex flex-wrap gap-3"
-              >
-                {features.map((feature, index) => (
-                  <motion.div
-                    key={index}
+          >
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.5 + index * 0.1 }}
                     className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-full shadow-sm hover:shadow-md transition-shadow"
-                  >
+              >
                     <feature.icon className="h-4 w-4 text-blue-600" />
                     <span className="text-sm font-medium text-gray-700">{feature.text}</span>
-                  </motion.div>
-                ))}
               </motion.div>
-            </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
 
             {/* Right Content - Illustration */}
             <motion.div

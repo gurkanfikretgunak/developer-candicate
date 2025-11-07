@@ -50,7 +50,11 @@
       "login": "Giriş Yap",
       "backHome": "Ana Sayfaya Dön",
       "registering": "Kayıt yapılıyor...",
-      "success": "Kayıt başarılı! Yönlendiriliyorsunuz..."
+      "success": "Kayıt başarılı! Yönlendiriliyorsunuz...",
+      "acceptGdpr": "GDPR politikasını kabul ediyor ve verilerimin nasıl kullanılacağını anlıyorum.",
+      "acceptCookies": "Platformu güvenle kullanmak için gerekli çerezleri kabul ediyorum.",
+      "mustAccept": "Devam edebilmek için GDPR ve çerez politikalarını kabul etmelisiniz.",
+      "viewPolicies": "Politikaları Gör"
     }
   },
   "onboarding": {
