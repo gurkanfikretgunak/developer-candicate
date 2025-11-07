@@ -2,14 +2,31 @@ import { getCandidatesByOrg } from '@/lib/actions';
 import { EmptyState } from '@/components/shared/EmptyState';
 import { CandidateCard } from '@/components/shared/CandidateCard';
 import { RefreshButton } from '@/components/shared/RefreshButton';
+import { CandidateListSkeleton } from '@/components/shared/Skeletons';
 import { Button } from '@/components/ui/button';
 import { UserPlus } from 'lucide-react';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
 
-export default async function DashboardPage() {
+async function CandidatesList() {
   const { data: candidates } = await getCandidatesByOrg();
+  const t = await getTranslations('dashboard');
+
+  if (!candidates || candidates.length === 0) {
+    return <EmptyState />;
+  }
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {candidates.map((candidate) => (
+        <CandidateCard key={candidate.id} candidate={candidate} />
+      ))}
+    </div>
+  );
+}
+
+export default async function DashboardPage() {
   const t = await getTranslations('dashboard');
 
   const descriptionParagraphs = [
@@ -65,28 +82,20 @@ export default async function DashboardPage() {
             {t('subtitle')}
           </p>
         </div>
-        {candidates && candidates.length > 0 && (
-          <div className="flex items-center gap-2">
-            <RefreshButton />
-            <Link href="/dashboard/candidate/new">
-              <Button>
-                <UserPlus className="mr-2 h-4 w-4" />
-                {t('addCandidate')}
-              </Button>
-            </Link>
-          </div>
-        )}
+        <div className="flex items-center gap-2">
+          <RefreshButton />
+          <Link href="/dashboard/candidate/new">
+            <Button>
+              <UserPlus className="mr-2 h-4 w-4" />
+              {t('addCandidate')}
+            </Button>
+          </Link>
+        </div>
       </div>
 
-      {!candidates || candidates.length === 0 ? (
-        <EmptyState />
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {candidates.map((candidate) => (
-            <CandidateCard key={candidate.id} candidate={candidate} />
-          ))}
-        </div>
-      )}
+      <Suspense fallback={<CandidateListSkeleton />}>
+        <CandidatesList />
+      </Suspense>
     </div>
   );
 }

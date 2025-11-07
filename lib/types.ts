@@ -14,6 +14,8 @@ export interface UserProfile {
   full_name: string | null;
   language: string;
   created_at: string;
+  gdpr_accepted_at?: string | null;
+  cookies_accepted_at?: string | null;
 }
 
 export interface Step1Data {

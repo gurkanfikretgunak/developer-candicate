@@ -12,7 +12,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { LogOut, Settings, ClipboardList } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { LogOut, Settings, ClipboardList, ShieldCheck, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 import type { Organization, UserProfile } from '@/lib/types';
 import { useTranslations } from 'next-intl';
@@ -43,6 +44,8 @@ export function Header({ organization, profile }: HeaderProps) {
       .toUpperCase()
       .slice(0, 2);
   };
+
+  const isCompliant = profile?.gdpr_accepted_at && profile?.cookies_accepted_at;
 
   return (
     <header className="border-b border-gray-200 bg-white">
@@ -96,9 +99,29 @@ export function Header({ organization, profile }: HeaderProps) {
             <Link href="/dashboard/settings">
               <DropdownMenuItem className="text-gray-700 cursor-pointer">
                 <Settings className="mr-2 h-4 w-4" />
-                {t('settings')}
+                <span className="flex-1">{t('settings')}</span>
+                {isCompliant && (
+                  <Badge variant="outline" className="ml-2 h-5 border-green-500 bg-green-50 text-green-700 text-xs">
+                    <ShieldCheck className="mr-1 h-3 w-3" />
+                    Compliant
+                  </Badge>
+                )}
               </DropdownMenuItem>
             </Link>
+            {!isCompliant && (
+              <>
+                <DropdownMenuSeparator />
+                <Link href="/compliance">
+                  <DropdownMenuItem className="text-amber-700 cursor-pointer bg-amber-50 hover:bg-amber-100">
+                    <AlertCircle className="mr-2 h-4 w-4" />
+                    <span className="flex-1">Complete Compliance</span>
+                    <Badge variant="outline" className="ml-2 h-5 border-amber-500 bg-amber-100 text-amber-700 text-xs">
+                      Required
+                    </Badge>
+                  </DropdownMenuItem>
+                </Link>
+              </>
+            )}
             <DropdownMenuItem onClick={handleLogout} className="text-gray-700">
               <LogOut className="mr-2 h-4 w-4" />
               {t('logout')}

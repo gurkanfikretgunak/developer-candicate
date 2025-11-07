@@ -91,7 +91,7 @@ export function CandidateCard({ candidate }: CandidateCardProps) {
 
   return (
     <Link href={`/dashboard/candidate/${candidate.id}`}>
-      <Card className="hover:border-primary transition-colors cursor-pointer">
+      <Card className="hover:border-primary hover:border-2 hover:bg-gray-50/50 hover:shadow-md transition-all duration-200 cursor-pointer">
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between">
             <div className="space-y-1 flex-1">
