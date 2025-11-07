@@ -144,13 +144,16 @@ export default function RegisterPage() {
                   checked={gdprAccepted}
                   onCheckedChange={(checked) => setGdprAccepted(Boolean(checked))}
                   disabled={isLoading}
+                  className="mt-0.5"
                 />
-                <Label htmlFor="gdpr" className="text-sm text-gray-700">
-                  {t('acceptGdpr')}{' '}
-                  <Link href="/policies#gdpr" className="text-blue-600 underline">
-                    {t('viewPolicies')}
-                  </Link>
-                </Label>
+                <div className="flex-1">
+                  <Label htmlFor="gdpr" className="text-sm text-gray-700 cursor-pointer">
+                    {t('acceptGdpr')}{' '}
+                    <Link href="/policies#gdpr" className="text-blue-600 underline hover:text-blue-800" onClick={(e) => e.stopPropagation()}>
+                      {t('viewPolicies')}
+                    </Link>
+                  </Label>
+                </div>
               </div>
 
               <div className="flex items-start gap-3">
@@ -159,13 +162,16 @@ export default function RegisterPage() {
                   checked={cookiesAccepted}
                   onCheckedChange={(checked) => setCookiesAccepted(Boolean(checked))}
                   disabled={isLoading}
+                  className="mt-0.5"
                 />
-                <Label htmlFor="cookies" className="text-sm text-gray-700">
-                  {t('acceptCookies')}{' '}
-                  <Link href="/policies#cookies" className="text-blue-600 underline">
-                    {t('viewPolicies')}
-                  </Link>
-                </Label>
+                <div className="flex-1">
+                  <Label htmlFor="cookies" className="text-sm text-gray-700 cursor-pointer">
+                    {t('acceptCookies')}{' '}
+                    <Link href="/policies#cookies" className="text-blue-600 underline hover:text-blue-800" onClick={(e) => e.stopPropagation()}>
+                      {t('viewPolicies')}
+                    </Link>
+                  </Label>
+                </div>
               </div>
             </div>
 

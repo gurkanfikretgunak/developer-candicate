@@ -35,33 +35,37 @@ export function AcceptanceForm({ action, policiesUrl = '/policies' }: Acceptance
   return (
     <form ref={formRef} action={formAction} className="space-y-6">
       <div className="space-y-4">
-        <Label className="flex items-start gap-3 text-sm text-gray-700">
+        <div className="flex items-start gap-3">
           <Checkbox
+            id="gdpr-compliance"
             name="gdpr"
             checked={gdprChecked}
             onCheckedChange={(checked) => setGdprChecked(Boolean(checked))}
+            className="mt-0.5"
           />
-          <span>
+          <Label htmlFor="gdpr-compliance" className="text-sm text-gray-700 cursor-pointer flex-1">
             I have read and accept the GDPR policy.{' '}
-            <Link href={`${policiesUrl}#gdpr`} className="underline text-blue-600">
+            <Link href={`${policiesUrl}#gdpr`} className="underline text-blue-600 hover:text-blue-800" onClick={(e) => e.stopPropagation()}>
               View policy
             </Link>
-          </span>
-        </Label>
+          </Label>
+        </div>
 
-        <Label className="flex items-start gap-3 text-sm text-gray-700">
+        <div className="flex items-start gap-3">
           <Checkbox
+            id="cookies-compliance"
             name="cookies"
             checked={cookiesChecked}
             onCheckedChange={(checked) => setCookiesChecked(Boolean(checked))}
+            className="mt-0.5"
           />
-          <span>
+          <Label htmlFor="cookies-compliance" className="text-sm text-gray-700 cursor-pointer flex-1">
             I consent to the cookie policy required to use the platform.{' '}
-            <Link href={`${policiesUrl}#cookies`} className="underline text-blue-600">
+            <Link href={`${policiesUrl}#cookies`} className="underline text-blue-600 hover:text-blue-800" onClick={(e) => e.stopPropagation()}>
               View policy
             </Link>
-          </span>
-        </Label>
+          </Label>
+        </div>
       </div>
 
       <SubmitButton disabled={!gdprChecked || !cookiesChecked} />
