@@ -1,7 +1,7 @@
 'use server';
 
 import { createServerSupabaseClient } from '@/lib/supabase';
-import type { Organization, Candidate, UserProfile, OrganizationDepartmentCriteria, Category } from '@/lib/types';
+import type { Organization, Candidate, UserProfile, OrganizationDepartmentCriteria, Category, Job } from '@/lib/types';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 
@@ -392,4 +392,292 @@ export async function deleteOrganizationDepartmentCriteria(departmentId: string)
 
   revalidatePath('/dashboard/settings');
   return { success: true };
+}
+
+// Jobs Actions
+export async function getJobsByOrg(): Promise<{ data: Job[] | null; error?: string }> {
+  const supabase = await createServerSupabaseClient();
+  
+  const { organization } = await getUserOrganization();
+  
+  if (!organization) {
+    return { data: null, error: 'Organization not found' };
+  }
+
+  const { data, error } = await supabase
+    .from('jobs')
+    .select('*')
+    .eq('organization_id', organization.id)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    return { data: null, error: error.message };
+  }
+
+  return { data };
+}
+
+export async function getActiveJobs(): Promise<{ data: Job[] | null; error?: string }> {
+  const supabase = await createServerSupabaseClient();
+
+  const { data, error } = await supabase
+    .from('jobs')
+    .select(`
+      *,
+      organizations!inner (
+        id,
+        name
+      )
+    `)
+    .eq('status', 'active')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    return { data: null, error: error.message };
+  }
+
+  // Transform the data to match Job interface
+  const jobs = data?.map((job: any) => ({
+    ...job,
+    organization: job.organizations ? {
+      id: job.organizations.id,
+      name: job.organizations.name,
+    } : null,
+  })) || [];
+
+  return { data: jobs };
+}
+
+export async function createJob(data: {
+  title: string;
+  department: string;
+  description: string;
+  requirements?: string;
+  location?: string;
+  employment_type?: 'full-time' | 'part-time' | 'contract' | 'internship' | 'remote' | 'hybrid';
+  status?: 'active' | 'closed' | 'draft';
+}): Promise<{ data: Job | null; error?: string }> {
+  const supabase = await createServerSupabaseClient();
+  
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  
+  if (userError || !user) {
+    return { data: null, error: 'User not found' };
+  }
+
+  const { organization } = await getUserOrganization();
+  
+  if (!organization) {
+    return { data: null, error: 'Organization not found' };
+  }
+
+  const { data: job, error } = await supabase
+    .from('jobs')
+    .insert({
+      organization_id: organization.id,
+      title: data.title,
+      department: data.department,
+      description: data.description,
+      requirements: data.requirements || null,
+      location: data.location || null,
+      employment_type: data.employment_type || null,
+      status: data.status || 'active',
+      created_by: user.id,
+    })
+    .select()
+    .single();
+
+  if (error) {
+    return { data: null, error: error.message };
+  }
+
+  revalidatePath('/dashboard/hiring/jobs');
+  revalidatePath('/hiring');
+  revalidatePath('/');
+  return { data: job };
+}
+
+export async function updateJob(
+  jobId: string,
+  data: {
+    title?: string;
+    department?: string;
+    description?: string;
+    requirements?: string;
+    location?: string;
+    employment_type?: 'full-time' | 'part-time' | 'contract' | 'internship' | 'remote' | 'hybrid';
+    status?: 'active' | 'closed' | 'draft';
+  }
+): Promise<{ data: Job | null; error?: string }> {
+  const supabase = await createServerSupabaseClient();
+  
+  const { organization } = await getUserOrganization();
+  
+  if (!organization) {
+    return { data: null, error: 'Organization not found' };
+  }
+
+  const { data: job, error } = await supabase
+    .from('jobs')
+    .update({
+      ...data,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', jobId)
+    .eq('organization_id', organization.id)
+    .select()
+    .single();
+
+  if (error) {
+    return { data: null, error: error.message };
+  }
+
+  revalidatePath('/dashboard/hiring/jobs');
+  revalidatePath('/hiring');
+  revalidatePath('/');
+  return { data: job };
+}
+
+export async function deleteJob(jobId: string): Promise<{ success: boolean; error?: string }> {
+  const supabase = await createServerSupabaseClient();
+  
+  const { organization } = await getUserOrganization();
+  
+  if (!organization) {
+    return { success: false, error: 'Organization not found' };
+  }
+
+  const { error } = await supabase
+    .from('jobs')
+    .delete()
+    .eq('id', jobId)
+    .eq('organization_id', organization.id);
+
+  if (error) {
+    return { success: false, error: error.message };
+  }
+
+  revalidatePath('/dashboard/hiring/jobs');
+  revalidatePath('/hiring');
+  revalidatePath('/');
+  return { success: true };
+}
+
+export async function getJobsStats(): Promise<{
+  data: {
+    total: number;
+    active: number;
+    closed: number;
+    draft: number;
+    applications: number;
+  } | null;
+  error?: string;
+}> {
+  const supabase = await createServerSupabaseClient();
+  
+  const { organization } = await getUserOrganization();
+  
+  if (!organization) {
+    return { data: null, error: 'Organization not found' };
+  }
+
+  // Get jobs stats
+  const { data: jobs, error: jobsError } = await supabase
+    .from('jobs')
+    .select('id, status')
+    .eq('organization_id', organization.id);
+
+  if (jobsError) {
+    return { data: null, error: jobsError.message };
+  }
+
+  const stats = {
+    total: jobs?.length || 0,
+    active: jobs?.filter((j) => j.status === 'active').length || 0,
+    closed: jobs?.filter((j) => j.status === 'closed').length || 0,
+    draft: jobs?.filter((j) => j.status === 'draft').length || 0,
+    applications: 0,
+  };
+
+  // Get applications count for jobs with job_id
+  if (jobs && jobs.length > 0) {
+    const jobIds = jobs.map((j) => j.id).filter(Boolean);
+    const { count, error: appsError } = await supabase
+      .from('public_applications')
+      .select('*', { count: 'exact', head: true })
+      .in('job_id', jobIds);
+
+    if (!appsError && count !== null) {
+      stats.applications = count;
+    }
+  }
+
+  return { data: stats };
+}
+
+// Account Deletion Actions
+export async function deleteAccount(): Promise<{ success: boolean; error?: string }> {
+  const supabase = await createServerSupabaseClient();
+  
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  
+  if (userError || !user) {
+    return { success: false, error: 'User not found' };
+  }
+
+  const { organization } = await getUserOrganization();
+
+  try {
+    // If user has an organization, delete related data
+    if (organization) {
+      // Get all job IDs for this organization
+      const { data: jobs } = await supabase
+        .from('jobs')
+        .select('id')
+        .eq('organization_id', organization.id);
+
+      // Delete public applications linked to organization's jobs
+      if (jobs && jobs.length > 0) {
+        const jobIds = jobs.map((j) => j.id);
+        await supabase
+          .from('public_applications')
+          .delete()
+          .in('job_id', jobIds);
+      }
+
+      // Delete organization (this will cascade delete:
+      // - organization_department_criteria
+      // - jobs (which we already handled applications for)
+      // - candidates
+      // - user_profiles will have organization_id set to NULL)
+      const { error: orgError } = await supabase
+        .from('organizations')
+        .delete()
+        .eq('id', organization.id);
+
+      if (orgError) {
+        return { success: false, error: orgError.message };
+      }
+    }
+
+    // Delete user profile (if organization was deleted, this might already be handled)
+    await supabase
+      .from('user_profiles')
+      .delete()
+      .eq('id', user.id);
+
+    // Sign out the user
+    // Note: Auth user deletion requires admin privileges
+    // All user data has been deleted, user can delete auth account through Supabase dashboard if needed
+    const { error: signOutError } = await supabase.auth.signOut();
+    
+    if (signOutError) {
+      return { success: false, error: signOutError.message };
+    }
+
+    revalidatePath('/');
+    return { success: true };
+  } catch (error: any) {
+    return { success: false, error: error.message || 'Failed to delete account' };
+  }
 }

@@ -90,6 +90,47 @@
       "evaluation": "Aday Değerlendirme",
       "settings": "Ayarlar",
       "logout": "Çıkış Yap"
+    },
+    "hiring": {
+      "title": "İş Başvuruları",
+      "noApplications": "Henüz başvuru yok. Genel işe alım linkini paylaşarak başvuru toplamaya başlayın.",
+      "preferredRole": "Tercih edilen rol",
+      "submittedOn": "Gönderilme tarihi",
+      "viewPortfolio": "Portföyü Görüntüle",
+      "noCoverLetter": "Ön yazı sağlanmadı.",
+      "candidateCreated": "Aday oluşturuldu",
+      "startEvaluation": "Aday değerlendirmesini başlat"
+    },
+    "jobs": {
+      "title": "İş İlanları",
+      "subtitle": "İş ilanlarınızı yönetin",
+      "addJob": "Yeni İş İlanı Ekle",
+      "noJobs": "Henüz iş ilanı yok. Başvuru almaya başlamak için ilk iş ilanınızı oluşturun.",
+      "createJob": "İş İlanı Oluştur",
+      "editJob": "İş İlanını Düzenle",
+      "deleteJob": "İş İlanını Sil",
+      "jobTitle": "İş Unvanı",
+      "department": "Departman",
+      "description": "Açıklama",
+      "requirements": "Gereksinimler",
+      "location": "Konum",
+      "employmentType": "Çalışma Tipi",
+      "status": "Durum",
+      "active": "Aktif",
+      "closed": "Kapatıldı",
+      "draft": "Taslak",
+      "fullTime": "Tam Zamanlı",
+      "partTime": "Yarı Zamanlı",
+      "contract": "Sözleşmeli",
+      "internship": "Stajyer",
+      "remote": "Uzaktan",
+      "hybrid": "Hibrit",
+      "createdAt": "Oluşturulma",
+      "updatedAt": "Güncellenme",
+      "deleteConfirm": "Bu iş ilanını silmek istediğinizden emin misiniz?",
+      "saveSuccess": "İş ilanı başarıyla kaydedildi",
+      "deleteSuccess": "İş ilanı başarıyla silindi",
+      "error": "Bir hata oluştu"
     }
   },
   "candidate": {
@@ -256,6 +297,39 @@
       "profileUpdated": "Profil başarıyla güncellendi",
       "languageUpdated": "Dil başarıyla güncellendi. Sayfa yenilenecek.",
       "error": "Bir hata oluştu"
+    },
+    "deleteAccount": {
+      "title": "Hesabı Sil",
+      "subtitle": "Hesabınızı ve tüm ilişkili verileri kalıcı olarak silin",
+      "description": "Bu işlem geri alınamaz. Bu işlem kalıcı olarak şunları silecektir:",
+      "items": {
+        "profile": "Profil bilgileriniz",
+        "organization": "Organizasyonunuz ve tüm verileri",
+        "candidates": "Tüm aday değerlendirmeleri",
+        "jobs": "Tüm iş ilanları",
+        "applications": "Tüm iş başvuruları",
+        "criteria": "Tüm departman kriteri ayarları"
+      },
+      "warning": "Bu işlem kalıcıdır ve geri alınamaz.",
+      "confirmText": "Onaylamak için DELETE yazın",
+      "confirmPlaceholder": "DELETE yazın",
+      "deleteButton": "Hesabımı Sil",
+      "deleting": "Siliniyor...",
+      "success": "Hesap başarıyla silindi",
+      "error": "Hesap silinirken hata oluştu",
+      "confirmError": "Hesap silmeyi onaylamak için lütfen DELETE yazın"
+    },
+    "compliance": {
+      "title": "Uyumluluk & Gizlilik",
+      "subtitle": "GDPR ve çerez politikası kabul durumunuz",
+      "gdprPolicy": "GDPR Politikası",
+      "cookiePolicy": "Çerez Politikası",
+      "acceptedOn": "Kabul edildi",
+      "notAccepted": "Kabul edilmedi",
+      "accepted": "Kabul Edildi",
+      "acceptNow": "Şimdi Kabul Et",
+      "viewPoliciesDescription": "Tam politikaları görüntüleyin ve tercihlerinizi güncelleyin",
+      "viewPolicies": "Politikaları Görüntüle"
     }
   },
   "sectors": {
@@ -289,6 +363,38 @@
     "projectName": "Developer Candidate Evaluation Platform",
     "madeBy": "Made by",
     "builtWith": "Designed with"
+  },
+  "hiring": {
+    "title": "Ekibimize Katılın",
+    "subtitle": "Ürün odaklı mühendisler, tasarımcılar ve işe alım uzmanları arıyoruz",
+    "applyNow": "Şimdi başvur",
+    "applyDescription": "Geçmişinizden, çözmeyi sevdiğiniz problem türlerinden ve gurur duyduğunuz çalışmalarınızdan bahsedin. Her başvuruyu dikkatle inceliyoruz.",
+    "form": {
+      "selectJob": "İş Pozisyonu Seçin",
+      "fullName": "Ad Soyad",
+      "email": "E-posta",
+      "role": "Tercih Edilen Rol",
+      "portfolio": "Portföy URL'si",
+      "coverLetter": "Ön Yazı",
+      "submit": "Başvuruyu Gönder",
+      "submitting": "Gönderiliyor...",
+      "successTitle": "Başvurunuz için teşekkürler!",
+      "successMessage": "Başvurunuzu inceleyip en kısa sürede size dönüş yapacağız.",
+      "errorTitle": "Hata",
+      "errorMessage": "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar deneyin.",
+      "invalidUrl": "Geçersiz portföy URL'si"
+    },
+    "jobs": {
+      "title": "Açık Pozisyonlar",
+      "subtitle": "Açık pozisyonlarımızı inceleyin ve doğrudan başvurun",
+      "description": "Ekibimize katılacak yetenekli bireyler arıyoruz. Mevcut açık pozisyonlarımızı keşfedin ve becerilerinizle ilgi alanlarınıza uygun mükemmel rolü bulun.",
+      "postedBy": "Bu iş ilanı",
+      "postedBySuffix": "tarafından oluşturulmuştur",
+      "noJobs": "Şu anda açık pozisyon bulunmamaktadır. Daha sonra tekrar kontrol edin!",
+      "viewDetails": "Detayları Görüntüle",
+      "apply": "Şimdi Başvur",
+      "joinTeam": "Ekibe katıl"
+    }
   },
   "report": {
     "title": "Aday Değerlendirme Raporu",

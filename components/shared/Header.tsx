@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { LogOut, Settings, ClipboardList, ShieldCheck, AlertCircle } from 'lucide-react';
+import { LogOut, Settings, ClipboardList, ShieldCheck, AlertCircle, LayoutDashboard, Briefcase, FileText } from 'lucide-react';
 import Link from 'next/link';
 import type { Organization, UserProfile } from '@/lib/types';
 import { useTranslations } from 'next-intl';
@@ -50,27 +50,32 @@ export function Header({ organization, profile }: HeaderProps) {
   return (
     <header className="border-b border-gray-200 bg-white">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <ClipboardList className="h-5 w-5 text-gray-700" />
-          <div>
-            <h1 className="font-semibold text-sm text-gray-900">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+          <ClipboardList className="h-5 w-5 text-gray-700 flex-shrink-0" />
+          <div className="min-w-0">
+            <h1 className="font-semibold text-sm text-gray-900 truncate">
               {organization?.name || 'Organization'}
             </h1>
-            <p className="text-xs text-gray-600">
+            <p className="text-xs text-gray-600 hidden sm:block">
               {t('evaluation')}
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          <Link href="/dashboard">
+        <div className="flex items-center gap-1 sm:gap-3 flex-shrink-0">
+          <Link href="/dashboard" className="hidden sm:block">
             <Button variant="ghost" size="sm">
               Dashboard
             </Button>
           </Link>
-          <Link href="/dashboard/hiring">
+          <Link href="/dashboard/hiring" className="hidden sm:block">
             <Button variant="ghost" size="sm">
               Hiring
+            </Button>
+          </Link>
+          <Link href="/dashboard/hiring/jobs" className="hidden sm:block">
+            <Button variant="ghost" size="sm">
+              Jobs
             </Button>
           </Link>
 
@@ -96,8 +101,29 @@ export function Header({ organization, profile }: HeaderProps) {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <Link href="/dashboard/settings">
-              <DropdownMenuItem className="text-gray-700 cursor-pointer">
+            <div className="sm:hidden">
+              <DropdownMenuItem asChild className="text-gray-700 cursor-pointer">
+                <Link href="/dashboard">
+                  <LayoutDashboard className="mr-2 h-4 w-4" />
+                  Dashboard
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild className="text-gray-700 cursor-pointer">
+                <Link href="/dashboard/hiring">
+                  <Briefcase className="mr-2 h-4 w-4" />
+                  Hiring
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild className="text-gray-700 cursor-pointer">
+                <Link href="/dashboard/hiring/jobs">
+                  <FileText className="mr-2 h-4 w-4" />
+                  Jobs
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+            </div>
+            <DropdownMenuItem asChild className="text-gray-700 cursor-pointer">
+              <Link href="/dashboard/settings">
                 <Settings className="mr-2 h-4 w-4" />
                 <span className="flex-1">{t('settings')}</span>
                 {isCompliant && (
@@ -106,20 +132,20 @@ export function Header({ organization, profile }: HeaderProps) {
                     Compliant
                   </Badge>
                 )}
-              </DropdownMenuItem>
-            </Link>
+              </Link>
+            </DropdownMenuItem>
             {!isCompliant && (
               <>
                 <DropdownMenuSeparator />
-                <Link href="/compliance">
-                  <DropdownMenuItem className="text-amber-700 cursor-pointer bg-amber-50 hover:bg-amber-100">
+                <DropdownMenuItem asChild className="text-amber-700 cursor-pointer bg-amber-50 hover:bg-amber-100">
+                  <Link href="/compliance">
                     <AlertCircle className="mr-2 h-4 w-4" />
                     <span className="flex-1">Complete Compliance</span>
                     <Badge variant="outline" className="ml-2 h-5 border-amber-500 bg-amber-100 text-amber-700 text-xs">
                       Required
                     </Badge>
-                  </DropdownMenuItem>
-                </Link>
+                  </Link>
+                </DropdownMenuItem>
               </>
             )}
             <DropdownMenuItem onClick={handleLogout} className="text-gray-700">

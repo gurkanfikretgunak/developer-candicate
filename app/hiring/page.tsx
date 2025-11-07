@@ -3,8 +3,10 @@ import { createServerSupabaseClient } from '@/lib/supabase';
 import { ApplicationForm, type ApplicationFormState } from '@/components/hiring/ApplicationForm';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle2, Globe, HeartHandshake, Users } from 'lucide-react';
+import { CheckCircle2, Globe, HeartHandshake, Users, Briefcase } from 'lucide-react';
 import { validateAndSanitizeUrl } from '@/lib/url-security';
+import { getActiveJobs } from '@/lib/actions';
+import { JobsSection } from '@/components/hiring/JobsSection';
 
 export const metadata: Metadata = {
   title: 'Join Our Team | Developer Candidate Evaluation Platform',
@@ -21,6 +23,7 @@ async function submitApplication(
   const name = formData.get('name')?.toString().trim();
   const email = formData.get('email')?.toString().trim();
   const role = formData.get('role')?.toString().trim() || null;
+  const jobId = formData.get('jobId')?.toString().trim() || null;
   const portfolioUrlRaw = formData.get('portfolio')?.toString().trim() || null;
   const coverLetter = formData.get('coverLetter')?.toString().trim() || null;
 
@@ -50,6 +53,7 @@ async function submitApplication(
       name,
       email,
       role,
+      job_id: jobId,
       portfolio_url: portfolioUrl,
       cover_letter: coverLetter,
     });
@@ -103,7 +107,9 @@ const benefits = [
   'Transparent roadmap and collaborative planning',
 ];
 
-export default function HiringPage() {
+export default async function HiringPage() {
+  const { data: jobs } = await getActiveJobs();
+
   return (
     <div className="bg-white min-h-screen">
       <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
@@ -119,6 +125,12 @@ export default function HiringPage() {
           </p>
         </div>
       </section>
+
+      {jobs && jobs.length > 0 && (
+        <section className="container mx-auto px-4 max-w-6xl py-16">
+          <JobsSection jobs={jobs} />
+        </section>
+      )}
 
       <section className="container mx-auto px-4 max-w-6xl grid gap-8 py-16 md:grid-cols-[2fr_3fr]">
         <div className="space-y-8">
@@ -166,7 +178,7 @@ export default function HiringPage() {
               work you&apos;re proud of. We review every application carefully.
             </p>
           </div>
-          <ApplicationForm action={submitApplication} />
+          <ApplicationForm action={submitApplication} jobs={jobs || []} />
         </div>
       </section>
     </div>

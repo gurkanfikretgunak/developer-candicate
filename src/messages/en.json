@@ -90,6 +90,47 @@
       "evaluation": "Candidate Evaluation",
       "settings": "Settings",
       "logout": "Logout"
+    },
+    "hiring": {
+      "title": "Hiring Applications",
+      "noApplications": "No applications yet. Share the public hiring link to start collecting inbound interest.",
+      "preferredRole": "Preferred role",
+      "submittedOn": "Submitted on",
+      "viewPortfolio": "View Portfolio",
+      "noCoverLetter": "No cover letter provided.",
+      "candidateCreated": "Candidate created",
+      "startEvaluation": "Start candidate evaluation"
+    },
+    "jobs": {
+      "title": "Job Postings",
+      "subtitle": "Manage your job postings",
+      "addJob": "Add New Job",
+      "noJobs": "No job postings yet. Create your first job posting to start receiving applications.",
+      "createJob": "Create Job",
+      "editJob": "Edit Job",
+      "deleteJob": "Delete Job",
+      "jobTitle": "Job Title",
+      "department": "Department",
+      "description": "Description",
+      "requirements": "Requirements",
+      "location": "Location",
+      "employmentType": "Employment Type",
+      "status": "Status",
+      "active": "Active",
+      "closed": "Closed",
+      "draft": "Draft",
+      "fullTime": "Full-time",
+      "partTime": "Part-time",
+      "contract": "Contract",
+      "internship": "Internship",
+      "remote": "Remote",
+      "hybrid": "Hybrid",
+      "createdAt": "Created",
+      "updatedAt": "Updated",
+      "deleteConfirm": "Are you sure you want to delete this job posting?",
+      "saveSuccess": "Job saved successfully",
+      "deleteSuccess": "Job deleted successfully",
+      "error": "An error occurred"
     }
   },
   "candidate": {
@@ -256,6 +297,39 @@
       "profileUpdated": "Profile updated successfully",
       "languageUpdated": "Language updated successfully. Page will refresh.",
       "error": "An error occurred"
+    },
+    "deleteAccount": {
+      "title": "Delete Account",
+      "subtitle": "Permanently delete your account and all associated data",
+      "description": "This action cannot be undone. This will permanently delete:",
+      "items": {
+        "profile": "Your profile information",
+        "organization": "Your organization and all its data",
+        "candidates": "All candidate evaluations",
+        "jobs": "All job postings",
+        "applications": "All job applications",
+        "criteria": "All department criteria settings"
+      },
+      "warning": "This action is permanent and cannot be undone.",
+      "confirmText": "Type DELETE to confirm",
+      "confirmPlaceholder": "Type DELETE",
+      "deleteButton": "Delete My Account",
+      "deleting": "Deleting...",
+      "success": "Account deleted successfully",
+      "error": "Failed to delete account",
+      "confirmError": "Please type DELETE to confirm account deletion"
+    },
+    "compliance": {
+      "title": "Compliance & Privacy",
+      "subtitle": "Your GDPR and cookie policy acceptance status",
+      "gdprPolicy": "GDPR Policy",
+      "cookiePolicy": "Cookie Policy",
+      "acceptedOn": "Accepted on",
+      "notAccepted": "Not accepted",
+      "accepted": "Accepted",
+      "acceptNow": "Accept Now",
+      "viewPoliciesDescription": "View full policies and update your preferences",
+      "viewPolicies": "View Policies"
     }
   },
   "sectors": {
@@ -289,6 +363,38 @@
     "projectName": "Developer Candidate Evaluation Platform",
     "madeBy": "Made by",
     "builtWith": "Designed with"
+  },
+  "hiring": {
+    "title": "Join Our Team",
+    "subtitle": "We're looking for product-minded engineers, designers, and hiring specialists",
+    "applyNow": "Apply now",
+    "applyDescription": "Tell us about your background, the kind of problems you like solving, and links to any work you're proud of. We review every application carefully.",
+    "form": {
+      "selectJob": "Select Job Position",
+      "fullName": "Full Name",
+      "email": "Email",
+      "role": "Preferred Role",
+      "portfolio": "Portfolio URL",
+      "coverLetter": "Cover Letter",
+      "submit": "Submit Application",
+      "submitting": "Submitting...",
+      "successTitle": "Thank you for applying!",
+      "successMessage": "We will review your application and get back to you soon.",
+      "errorTitle": "Error",
+      "errorMessage": "Something went wrong. Please try again later.",
+      "invalidUrl": "Invalid portfolio URL"
+    },
+    "jobs": {
+      "title": "Open Positions",
+      "subtitle": "Browse our open positions and apply directly",
+      "description": "We're looking for talented individuals to join our team. Explore our current openings and find the perfect role that matches your skills and interests.",
+      "postedBy": "This job posting was created by",
+      "postedBySuffix": "",
+      "noJobs": "No open positions at the moment. Check back later!",
+      "viewDetails": "View Details",
+      "apply": "Apply Now",
+      "joinTeam": "Join the team"
+    }
   },
   "report": {
     "title": "Candidate Evaluation Report",

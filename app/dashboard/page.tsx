@@ -67,25 +67,25 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-6">
       {/* Info Banner */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-lg p-6 shadow-sm">
-        <div className="text-gray-700 leading-relaxed text-sm space-y-2">
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-lg p-4 sm:p-6 shadow-sm">
+        <div className="text-gray-700 leading-relaxed text-xs sm:text-sm space-y-2">
           {descriptionParagraphs.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
         </div>
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-          <p className="text-gray-600 mt-1">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">{t('title')}</h1>
+          <p className="text-gray-600 mt-1 text-sm sm:text-base">
             {t('subtitle')}
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 w-full sm:w-auto">
           <RefreshButton />
-          <Link href="/dashboard/candidate/new">
-            <Button>
+          <Link href="/dashboard/candidate/new" className="flex-1 sm:flex-initial">
+            <Button className="w-full sm:w-auto">
               <UserPlus className="mr-2 h-4 w-4" />
               {t('addCandidate')}
             </Button>

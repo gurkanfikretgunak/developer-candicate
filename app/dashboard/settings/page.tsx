@@ -11,14 +11,17 @@ import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
-import { updateUserProfile, updateUserLanguage, getUserOrganization } from '@/lib/actions';
-import { Loader2, Globe, User, Building2, ShieldCheck, AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
+import { updateUserProfile, updateUserLanguage, getUserOrganization, deleteAccount } from '@/lib/actions';
+import { Loader2, Globe, User, Building2, ShieldCheck, AlertCircle, CheckCircle2, XCircle, Trash2 } from 'lucide-react';
 import type { Organization, UserProfile } from '@/lib/types';
 import { DepartmentCriteriaManager } from '@/components/settings/DepartmentCriteriaManager';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { format } from 'date-fns';
+import { tr, enUS } from 'date-fns/locale';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { SettingsSectionSkeleton, ComplianceSectionSkeleton, DeleteAccountSectionSkeleton } from '@/components/shared/Skeletons';
 
 // Helper function to get sector display value
 const getSectorDisplay = (sector: string | null, tSectors: any): string => {
@@ -61,10 +64,14 @@ export default function SettingsPage() {
   const t = useTranslations('settings');
   const tSectors = useTranslations('sectors');
   const tOnboarding = useTranslations('onboarding.languages');
+  const tCompliance = useTranslations('settings.compliance');
   
   const [isLoading, setIsLoading] = useState(false);
   const [isSavingLanguage, setIsSavingLanguage] = useState(false);
   const [isLoadingData, setIsLoadingData] = useState(true);
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
+  const [deleteConfirmText, setDeleteConfirmText] = useState('');
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -152,6 +159,36 @@ export default function SettingsPage() {
     }
   };
 
+  const handleDeleteAccount = async () => {
+    if (deleteConfirmText !== 'DELETE') {
+      toast.error(t('deleteAccount.confirmError'));
+      return;
+    }
+
+    setIsDeletingAccount(true);
+
+    try {
+      const result = await deleteAccount();
+      
+      if (result.error) {
+        toast.error(result.error);
+      } else {
+        toast.success(t('deleteAccount.success'));
+        // Redirect to home page after deletion
+        setTimeout(() => {
+          router.push('/');
+          router.refresh();
+        }, 1500);
+      }
+    } catch (error) {
+      toast.error(t('deleteAccount.error'));
+    } finally {
+      setIsDeletingAccount(false);
+      setIsDeleteDialogOpen(false);
+      setDeleteConfirmText('');
+    }
+  };
+
   return (
     <div className="space-y-6 max-w-4xl">
       <div>
@@ -170,26 +207,7 @@ export default function SettingsPage() {
         <TabsContent value="general" className="space-y-6 mt-6">
           {/* Profile Section */}
           {isLoadingData ? (
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <Skeleton className="h-5 w-5" />
-                  <Skeleton className="h-6 w-32" />
-                </div>
-                <Skeleton className="h-4 w-48 mt-2" />
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-20" />
-                  <Skeleton className="h-10 w-full" />
-                </div>
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-16" />
-                  <Skeleton className="h-10 w-full" />
-                </div>
-                <Skeleton className="h-10 w-24" />
-              </CardContent>
-            </Card>
+            <SettingsSectionSkeleton />
           ) : (
             <Card>
               <CardHeader>
@@ -240,22 +258,7 @@ export default function SettingsPage() {
 
           {/* Language Section */}
           {isLoadingData ? (
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <Skeleton className="h-5 w-5" />
-                  <Skeleton className="h-6 w-32" />
-                </div>
-                <Skeleton className="h-4 w-48 mt-2" />
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-24" />
-                  <Skeleton className="h-10 w-full" />
-                </div>
-                <Skeleton className="h-10 w-32" />
-              </CardContent>
-            </Card>
+            <SettingsSectionSkeleton />
           ) : (
             <Card>
               <CardHeader>
@@ -298,24 +301,7 @@ export default function SettingsPage() {
 
           {/* Organization Section */}
           {isLoadingData ? (
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <Skeleton className="h-5 w-5" />
-                  <Skeleton className="h-6 w-40" />
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-20" />
-                  <Skeleton className="h-10 w-full" />
-                </div>
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-16" />
-                  <Skeleton className="h-10 w-full" />
-                </div>
-              </CardContent>
-            </Card>
+            <SettingsSectionSkeleton />
           ) : (
             organization && (
               <Card>
@@ -346,53 +332,15 @@ export default function SettingsPage() {
 
           {/* Compliance Section */}
           {isLoadingData ? (
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <Skeleton className="h-5 w-5" />
-                  <Skeleton className="h-6 w-48" />
-                </div>
-                <Skeleton className="h-4 w-64 mt-2" />
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 rounded-lg border border-gray-200 bg-gray-50">
-                    <div className="flex items-center gap-3">
-                      <Skeleton className="h-5 w-5 rounded-full" />
-                      <div className="space-y-2">
-                        <Skeleton className="h-4 w-24" />
-                        <Skeleton className="h-3 w-32" />
-                      </div>
-                    </div>
-                    <Skeleton className="h-6 w-20" />
-                  </div>
-                  <div className="flex items-center justify-between p-3 rounded-lg border border-gray-200 bg-gray-50">
-                    <div className="flex items-center gap-3">
-                      <Skeleton className="h-5 w-5 rounded-full" />
-                      <div className="space-y-2">
-                        <Skeleton className="h-4 w-28" />
-                        <Skeleton className="h-3 w-32" />
-                      </div>
-                    </div>
-                    <Skeleton className="h-6 w-20" />
-                  </div>
-                </div>
-                <div className="pt-2 border-t border-gray-200">
-                  <div className="flex items-center justify-between">
-                    <Skeleton className="h-4 w-48" />
-                    <Skeleton className="h-8 w-28" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <ComplianceSectionSkeleton />
           ) : (
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="h-5 w-5" />
-                  <CardTitle>Compliance & Privacy</CardTitle>
+                  <CardTitle>{tCompliance('title')}</CardTitle>
                 </div>
-                <CardDescription>Your GDPR and cookie policy acceptance status</CardDescription>
+                <CardDescription>{tCompliance('subtitle')}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
@@ -405,25 +353,25 @@ export default function SettingsPage() {
                         <XCircle className="h-5 w-5 text-amber-600" />
                       )}
                       <div>
-                        <p className="text-sm font-medium text-gray-900">GDPR Policy</p>
+                        <p className="text-sm font-medium text-gray-900">{tCompliance('gdprPolicy')}</p>
                         {profile?.gdpr_accepted_at ? (
                           <p className="text-xs text-gray-600">
-                            Accepted on {format(new Date(profile.gdpr_accepted_at), 'PPP')}
+                            {tCompliance('acceptedOn')} {format(new Date(profile.gdpr_accepted_at), 'PPP', { locale: currentLanguage === 'tr' ? tr : enUS })}
                           </p>
                         ) : (
-                          <p className="text-xs text-amber-600">Not accepted</p>
+                          <p className="text-xs text-amber-600">{tCompliance('notAccepted')}</p>
                         )}
                       </div>
                     </div>
                     {profile?.gdpr_accepted_at ? (
                       <Badge variant="outline" className="border-green-500 bg-green-50 text-green-700">
                         <ShieldCheck className="mr-1 h-3 w-3" />
-                        Accepted
+                        {tCompliance('accepted')}
                       </Badge>
                     ) : (
                       <Link href="/compliance">
                         <Button size="sm" variant="outline" className="border-amber-500 text-amber-700 hover:bg-amber-50">
-                          Accept Now
+                          {tCompliance('acceptNow')}
                         </Button>
                       </Link>
                     )}
@@ -438,25 +386,25 @@ export default function SettingsPage() {
                         <XCircle className="h-5 w-5 text-amber-600" />
                       )}
                       <div>
-                        <p className="text-sm font-medium text-gray-900">Cookie Policy</p>
+                        <p className="text-sm font-medium text-gray-900">{tCompliance('cookiePolicy')}</p>
                         {profile?.cookies_accepted_at ? (
                           <p className="text-xs text-gray-600">
-                            Accepted on {format(new Date(profile.cookies_accepted_at), 'PPP')}
+                            {tCompliance('acceptedOn')} {format(new Date(profile.cookies_accepted_at), 'PPP', { locale: currentLanguage === 'tr' ? tr : enUS })}
                           </p>
                         ) : (
-                          <p className="text-xs text-amber-600">Not accepted</p>
+                          <p className="text-xs text-amber-600">{tCompliance('notAccepted')}</p>
                         )}
                       </div>
                     </div>
                     {profile?.cookies_accepted_at ? (
                       <Badge variant="outline" className="border-green-500 bg-green-50 text-green-700">
                         <ShieldCheck className="mr-1 h-3 w-3" />
-                        Accepted
+                        {tCompliance('accepted')}
                       </Badge>
                     ) : (
                       <Link href="/compliance">
                         <Button size="sm" variant="outline" className="border-amber-500 text-amber-700 hover:bg-amber-50">
-                          Accept Now
+                          {tCompliance('acceptNow')}
                         </Button>
                       </Link>
                     )}
@@ -466,14 +414,114 @@ export default function SettingsPage() {
                 <div className="pt-2 border-t border-gray-200">
                   <div className="flex items-center justify-between">
                     <p className="text-sm text-gray-600">
-                      View full policies and update your preferences
+                      {tCompliance('viewPoliciesDescription')}
                     </p>
                     <Link href="/policies">
                       <Button variant="ghost" size="sm">
-                        View Policies
+                        {tCompliance('viewPolicies')}
                       </Button>
                     </Link>
                   </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Delete Account Section */}
+          {isLoadingData ? (
+            <DeleteAccountSectionSkeleton />
+          ) : (
+            <Card className="border-red-200 bg-red-50/50">
+              <CardHeader>
+                <div className="flex items-center gap-2">
+                  <Trash2 className="h-5 w-5 text-red-600" />
+                  <CardTitle className="text-red-900">{t('deleteAccount.title')}</CardTitle>
+                </div>
+                <CardDescription className="text-red-700">
+                  {t('deleteAccount.subtitle')}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <p className="text-sm text-gray-700 font-medium">{t('deleteAccount.description')}</p>
+                  <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 ml-2">
+                    <li>{t('deleteAccount.items.profile')}</li>
+                    <li>{t('deleteAccount.items.organization')}</li>
+                    <li>{t('deleteAccount.items.candidates')}</li>
+                    <li>{t('deleteAccount.items.jobs')}</li>
+                    <li>{t('deleteAccount.items.applications')}</li>
+                    <li>{t('deleteAccount.items.criteria')}</li>
+                  </ul>
+                </div>
+
+                <div className="pt-4 border-t border-red-200">
+                  <p className="text-sm font-semibold text-red-900 mb-4">
+                    {t('deleteAccount.warning')}
+                  </p>
+                  
+                  <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+                    <DialogTrigger asChild>
+                      <Button variant="destructive" className="w-full sm:w-auto">
+                        <Trash2 className="mr-2 h-4 w-4" />
+                        {t('deleteAccount.deleteButton')}
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle className="text-red-900 flex items-center gap-2">
+                          <AlertCircle className="h-5 w-5" />
+                          {t('deleteAccount.title')}
+                        </DialogTitle>
+                        <DialogDescription className="text-gray-600">
+                          {t('deleteAccount.warning')}
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-4 py-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="deleteConfirm" className="text-sm font-medium">
+                            {t('deleteAccount.confirmText')}
+                          </Label>
+                          <Input
+                            id="deleteConfirm"
+                            value={deleteConfirmText}
+                            onChange={(e) => setDeleteConfirmText(e.target.value)}
+                            placeholder={t('deleteAccount.confirmPlaceholder')}
+                            className="font-mono"
+                            disabled={isDeletingAccount}
+                          />
+                        </div>
+                      </div>
+                      <DialogFooter>
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            setIsDeleteDialogOpen(false);
+                            setDeleteConfirmText('');
+                          }}
+                          disabled={isDeletingAccount}
+                        >
+                          {t('actions.cancel')}
+                        </Button>
+                        <Button
+                          variant="destructive"
+                          onClick={handleDeleteAccount}
+                          disabled={isDeletingAccount || deleteConfirmText !== 'DELETE'}
+                        >
+                          {isDeletingAccount ? (
+                            <>
+                              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                              {t('deleteAccount.deleting')}
+                            </>
+                          ) : (
+                            <>
+                              <Trash2 className="mr-2 h-4 w-4" />
+                              {t('deleteAccount.deleteButton')}
+                            </>
+                          )}
+                        </Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </CardContent>
             </Card>

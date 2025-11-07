@@ -92,3 +92,35 @@ export interface OrganizationDepartmentCriteria {
   updated_at: string;
 }
 
+export interface Job {
+  id: string;
+  organization_id: string;
+  title: string;
+  department: string;
+  description: string;
+  requirements?: string | null;
+  location?: string | null;
+  employment_type?: 'full-time' | 'part-time' | 'contract' | 'internship' | 'remote' | 'hybrid' | null;
+  status: 'active' | 'closed' | 'draft';
+  created_by: string;
+  created_at: string;
+  updated_at: string;
+  organization?: {
+    id: string;
+    name: string;
+  } | null;
+}
+
+export interface PublicApplication {
+  id: string;
+  name: string;
+  email: string;
+  role?: string | null;
+  portfolio_url?: string | null;
+  cover_letter?: string | null;
+  job_id?: string | null;
+  candidate_id?: string | null;
+  converted_at?: string | null;
+  created_at: string;
+}
+
